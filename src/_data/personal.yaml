@@ -1,0 +1,11 @@
+email: me@paulapplegate.com
+address: |-
+  Organization name
+  Your street
+  12345, city
+  Tel: +34 928231911
+platforms:
+  github: 'https://github.com/theapplegates/eleventy-excellent'
+  mastodon: 'https://mastodon.cloud/@mrapplegate'
+  bluesky: 'https://bsky.app/profile/'
+  kofi: 'https://ko-fi.com/'
