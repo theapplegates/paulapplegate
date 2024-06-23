@@ -7,13 +7,8 @@ image: './src/assets/images/gallery/asturias-1.jpg'
 alt: 'A picturesque valley showcasing majestic mountains and lush forests, creating a serene and captivating landscape'
 credit: Lene took this photo.
 ---
-<img webc:is="eleventy-image" width="1920, 1280" src="src/assets/images/nature.jpg" alt="photo of nature" />
-<img
-  webc:is="eleventy-image"
-  width="1920, 1280"
-  src="src/assets/images/nature.jpg"
-  alt="nature"
-/>
+
+<img webc:is="eleventy-image" width="1920" sizes="(max-width: 1280px) 1280px, 100vw" src="src/assets/images/nature.jpg" alt="photo of nature" />
 
 <unpic-img
   webc:import="npm:@unpic/webc"
