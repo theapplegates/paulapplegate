@@ -8,7 +8,17 @@ alt: 'A picturesque valley showcasing majestic mountains and lush forests, creat
 credit: Lene took this photo.
 ---
 
-<img webc:is="eleventy-image" width="1920" height="1280" src="src/assets/images/patrick-konior-xsb4JsxrYcY-unsplash.jpg" alt="photo of nature" />
+<unpic-img
+webc:import="npm:@unpic/webc"
+src="https://res.cloudinary.com/paulapplegate-com/image/upload/v1719110111/paulapplegate-com-images/patrick-konior-xsb4JsxrYcY-unsplash.jpg"
+layout="constrained"
+width="1920"
+height="1280"
+alt="A man on a bench" ></unpic-img>
+<span style="font-size: 0.7em;">
+Photo by [Patrick Konior](https://unsplash.com/@patrickkonior?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://unsplash.com/photos/a-person-sitting-on-a-bench-on-a-pier-xsb4JsxrYcY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
+</span>
+
 
 <unpic-img
   webc:import="npm:@unpic/webc"
