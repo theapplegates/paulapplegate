@@ -8,7 +8,7 @@ alt: 'A picturesque valley showcasing majestic mountains and lush forests, creat
 credit: Lene took this photo.
 ---
 
-<img webc:is="eleventy-image" width="1920" sizes="(max-width: 1280px) 1280px, 100vw" src="src/assets/images/nature.jpg" alt="photo of nature" />
+<img webc:is="eleventy-image" width="1920" sizes="(max-width: 1920px) 1920px, 90vw" src="src/assets/images/nature.jpg" alt="photo of nature" />
 
 <unpic-img
   webc:import="npm:@unpic/webc"
