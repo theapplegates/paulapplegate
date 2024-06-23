@@ -42,6 +42,20 @@ Photo by [Patrick Konior](https://unsplash.com/@patrickkonior?utm_content=credit
   Photo by <a href="https://unsplash.com/@pawel_czerwinski?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Pawel Czerwinski</a> on <a href="https://unsplash.com/photos/a-white-room-with-a-potted-plant-in-it-ULsUfp7hl-I?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 </span>
 
+
+<unpic-img
+  webc:import="npm:@unpic/webc"
+  src="https://res.cloudinary.com/paulapplegate-com/image/upload/v1718998268/paulapplegate-com-images/Blog/contract_vfe0tn.jpg
+"
+  layout="constrained"
+  width="1222"
+  height="1600"
+  alt="A consolation prize sheet" ></unpic-img>
+<span style="font-size: 0.5em;">
+  Photo by <a href="https://paulapplegate.com">Paul Applegate</a>
+</span>
+
+
 This starter uses Eleventy's build-time image transformations.
 
 Find more info on https://www.11ty.dev/docs/plugins/image/ and edit settings in `config/shortcodes/image`.
