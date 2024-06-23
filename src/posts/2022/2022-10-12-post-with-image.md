@@ -15,7 +15,7 @@ layout="constrained"
 width="1920"
 height="1280"
 alt="A man on a bench" ></unpic-img>
-<span style="font-size: 0.7em;">
+<span style="font-size: 0.5em;">
 Photo by [Patrick Konior](https://unsplash.com/@patrickkonior?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://unsplash.com/photos/a-person-sitting-on-a-bench-on-a-pier-xsb4JsxrYcY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
 </span>
 
@@ -27,7 +27,7 @@ Photo by [Patrick Konior](https://unsplash.com/@patrickkonior?utm_content=credit
   width="1920"
   height="1224"
   alt="A lovely white home" ></unpic-img>
-  <span style="font-size: 0.7em;">
+  <span style="font-size: 0.5em;">
 	Photo by <a href="https://unsplash.com/@pawel_czerwinski?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Pawel Czerwinski</a> on <a href="https://unsplash.com/photos/a-white-room-with-a-potted-plant-in-it-ULsUfp7hl-I?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
   </span>
 
@@ -38,7 +38,7 @@ Photo by [Patrick Konior](https://unsplash.com/@patrickkonior?utm_content=credit
   width="1920"
   height="1280"
   alt="A lovely white bird" ></unpic-img>
-<span style="font-size: 0.7em;">
+<span style="font-size: 0.5em;">
   Photo by <a href="https://unsplash.com/@pawel_czerwinski?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Pawel Czerwinski</a> on <a href="https://unsplash.com/photos/a-white-room-with-a-potted-plant-in-it-ULsUfp7hl-I?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 </span>
 
