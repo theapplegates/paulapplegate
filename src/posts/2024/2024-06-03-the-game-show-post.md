@@ -30,6 +30,17 @@ The day of the taping I was a nervous wreak. [Dick Clark](https://en.wikipedia.o
   Photo by <a href="https://paulapplegate.com">Paul Applegate</a>
 </span>
 
+<unpic-img
+  webc:import="npm:@unpic/webc"
+  src="https://res.cloudinary.com/paulapplegate-com/image/upload/v1718998270/paulapplegate-com-images/Blog/Me-Mom_xsivkc.jpg
+"
+  layout="constrained"
+  width="2599"
+  height="2640"
+  alt="A consolation prize sheet" ></unpic-img>
+<span style="font-size: 0.5em;">
+  Photo by <a href="https://paulapplegate.com">Paul Applegate</a>
+</span>
 
 A random picture of Venice, Italy.
 ![Beautiful Venice, Italy](https://res.cloudinary.com/paulapplegate-com/image/upload/c_limit/dpr_auto/f_auto,q_auto/w_auto:breakpoints_200_1920_30_15/israel-ferrera-ewxZ27OmFrs-unsplash_xiwjm2.jpg)
