@@ -36,7 +36,7 @@ The day of the taping I was a nervous wreak. [Dick Clark](https://en.wikipedia.o
 "
   layout="constrained"
   width="2599"
-  height="2640"
+  height="5280"
   alt="A consolation prize sheet" ></unpic-img>
 <span style="font-size: 0.5em;">
   Photo by <a href="https://paulapplegate.com">Paul Applegate</a>
