@@ -9,7 +9,18 @@ I let AI write/improve my words. Here is what it wrote:
 When I was just ten years old, I found myself under the dazzling lights of a game show set. It's a memory that brings a smile to my face every time I think about it. The adventure began when my mother was auditioning for the $20,000 Pyramid. She had already breezed through three interviews and demo games, and was on the brink of being selected.
 That's when the unexpected happened. The producers pulled her aside and presented an intriguing offer. Instead of the usual pairing with a celebrity, they invited her to join a new show called the [Junior Partner Pyramid](https://en.wikipedia.org/wiki/Pyramid_(game_show)). In this twist on the classic game, an adult would partner with their child. Without hesitation, my mom agreed, and that's when my "training" began.
 The day of the taping, I was a bundle of nerves. But the legendary [Dick Clark](https://en.wikipedia.org/wiki/Dick_Clark) himself put us at ease, telling us to relax and just be ourselves. Under those scorching set lights, we prepared for the show, even bringing a change of clothes to "pretend" it was the next day if we won.
-{% image "./src/assets/images/blog/Me-Mom_xsivkc.jpg", "Me and mom walking on stage", "" %}
+<unpic-img
+  webc:import="npm:@unpic/webc"
+  src="https://res.cloudinary.com/paulapplegate-com/image/upload/v1718998270/paulapplegate-com-images/Blog/Me-Mom_xsivkc.jpg
+"
+  layout="constrained"
+  width="2599"
+  height="5280"
+  alt="A consolation prize sheet" ></unpic-img>
+<span style="font-size: 0.5em;">
+  Photo by <a href="https://paulapplegate.com">Paul Applegate</a>
+</span>
+
 
 The competition was fierce, and we ultimately lost, but the experience was unforgettable. Dick Clark spent time talking with us, and his warmth and encouragement made the whole experience feel like a win in itself.
 If you're curious about what 1979 TV looked like, you can watch the game show [online](https://vimeo.com/26595314) (password: pa$$word). It's a glimpse into a unique moment in time, one I'll treasure forever.
@@ -30,22 +41,4 @@ The day of the taping I was a nervous wreak. [Dick Clark](https://en.wikipedia.o
   Photo by <a href="https://paulapplegate.com">Paul Applegate</a>
 </span>
 
-<unpic-img
-  webc:import="npm:@unpic/webc"
-  src="https://res.cloudinary.com/paulapplegate-com/image/upload/v1718998270/paulapplegate-com-images/Blog/Me-Mom_xsivkc.jpg
-"
-  layout="constrained"
-  width="2599"
-  height="5280"
-  alt="A consolation prize sheet" ></unpic-img>
-<span style="font-size: 0.5em;">
-  Photo by <a href="https://paulapplegate.com">Paul Applegate</a>
-</span>
 
-A random picture of Venice, Italy.
-![Beautiful Venice, Italy](https://res.cloudinary.com/paulapplegate-com/image/upload/c_limit/dpr_auto/f_auto,q_auto/w_auto:breakpoints_200_1920_30_15/israel-ferrera-ewxZ27OmFrs-unsplash_xiwjm2.jpg)
-
-
-![The bird](https://res.cloudinary.com/paulapplegate-com/image/upload/c_limit/dpr_auto/f_auto,q_auto/w_auto:breakpoints_200_1920_30_15/bob-brewer_ayzghl.jpg)
-
-![The white home](https://res.cloudinary.com/paulapplegate-com/image/upload/c_limit/dpr_auto/f_auto,q_auto/w_auto:breakpoints_200_1920_30_15/pawel-czerwinski_r4l442.jpg)
