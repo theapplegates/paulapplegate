@@ -18,7 +18,18 @@ My words. Clearly I'm not a writer.
 Ten years old and on a game show. That trivia statement makes me smile whenever I think about it. It all started when my mother was auditioning for the $20,000 Pyramid. She made it through three interviews and demo games. Just when she was about to be picked for the show she was pulled aside my the higher ups and asked if she wanted to be on a new show called the [Junior Partner Pyramid](https://en.wikipedia.org/wiki/Pyramid_(game_show)). It would be played by an adult partnered with their child instead of being paired with a famous actor. My mom said yes and that started my training haha.
 The day of the taping I was a nervous wreak. [Dick Clark](https://en.wikipedia.org/wiki/Dick_Clark) told us to relax and be ourselves. I remember how hot the lights were on the set. We had to bring a change of clothes in case we won and needed to "pretend" it has the next day at the least. We ended up losing the game but Dick Clark spoke to us the most during the taping. If you are curious about 1979 TV, I have the game show [online](https://vimeo.com/26595314)., the password is pa$$word.
 
-{% image "./src/assets/images/blog/contract_vfe0tn.jpg", "My consolation prize form", "" %}
+<unpic-img
+  webc:import="npm:@unpic/webc"
+  src="https://res.cloudinary.com/paulapplegate-com/image/upload/v1718998268/paulapplegate-com-images/Blog/contract_vfe0tn.jpg
+"
+  layout="constrained"
+  width="1222"
+  height="1600"
+  alt="A consolation prize sheet" ></unpic-img>
+<span style="font-size: 0.5em;">
+  Photo by <a href="https://paulapplegate.com">Paul Applegate</a>
+</span>
+
 
 A random picture of Venice, Italy.
 ![Beautiful Venice, Italy](https://res.cloudinary.com/paulapplegate-com/image/upload/c_limit/dpr_auto/f_auto,q_auto/w_auto:breakpoints_200_1920_30_15/israel-ferrera-ewxZ27OmFrs-unsplash_xiwjm2.jpg)
