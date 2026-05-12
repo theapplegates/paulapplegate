@@ -1,0 +1,65 @@
+---
+/**
+ * CloudinaryImage
+ *
+ * A drop-in <img> replacement that wires every image through Cloudinary's
+ * optimization pipeline (f_auto + q_auto + responsive srcset).
+ *
+ * Required:
+ *   publicId  — the Cloudinary asset ID (e.g. "cld-sample-2")
+ *   alt       — always required; empty string only for decorative images
+ *   width     — rendered width in pixels; prevents layout shift (CLS)
+ *   height    — rendered height in pixels; prevents layout shift (CLS)
+ *
+ * Optional:
+ *   widths    — pixel widths to include in the srcset  (default: [400, 800, 1200, 1600])
+ *   sizes     — the CSS sizes hint that tells the browser which srcset entry to pick
+ *   crop      — Cloudinary crop mode                  (default: 'fill')
+ *   gravity   — where to anchor the crop               (default: 'auto')
+ *   blur      — blur strength for decorative/backdrop images
+ *   grayscale — convert to greyscale
+ *   loading   — 'lazy' (default) | 'eager' (use for above-the-fold heroes)
+ *   class     — forwarded to the <img> element
+ */
+
+import { getImageUrl, getSrcSet } from '../lib/cloudinary';
+import type { CloudinaryOptions } from '../lib/cloudinary';
+
+interface Props extends CloudinaryOptions {
+  publicId: string;
+  alt: string;
+  width: number;
+  height: number;
+  widths?: number[];
+  sizes?: string;
+  loading?: 'lazy' | 'eager';
+  class?: string;
+}
+
+const {
+  publicId,
+  alt,
+  width,
+  height,
+  widths = [400, 800, 1200, 1600],
+  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
+  loading = 'lazy',
+  class: className,
+  ...cloudinaryOptions
+} = Astro.props;
+
+const src    = getImageUrl(publicId, { width, height, ...cloudinaryOptions });
+const srcset = getSrcSet(publicId, widths, cloudinaryOptions);
+---
+
+<img
+  src={src}
+  srcset={srcset}
+  sizes={sizes}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={loading}
+  decoding="async"
+  class={className}
+/>
