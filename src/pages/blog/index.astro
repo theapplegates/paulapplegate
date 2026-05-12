@@ -1,0 +1,64 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime(),
+);
+---
+
+<Layout
+  title="Blog | AstroBlog"
+  description="Articles on Astro, Cloudinary, web performance, and modern development."
+>
+  <div class="page-header">
+    <div class="container">
+      <h1>All Articles</h1>
+      <p>Exploring web performance, image optimization, and the modern dev stack.</p>
+    </div>
+  </div>
+
+  <section class="container grid-section">
+    <div class="grid">
+      {posts.map(post => <BlogCard post={post} />)}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 1.5rem;
+    text-align: center;
+  }
+
+  .page-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-header p {
+    color: var(--text-muted);
+    font-size: 1.125rem;
+    max-width: 42ch;
+    margin: 0 auto;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .grid-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+</style>
