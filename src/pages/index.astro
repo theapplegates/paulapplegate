@@ -2,7 +2,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import BlogCard from '../components/BlogCard.astro';
-import CloudinaryImage from '../components/CloudinaryImage.astro';
+import { getImageUrl } from '../lib/cloudinary';
 
 const recentPosts = (await getCollection('blog'))
   .sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
@@ -38,24 +38,50 @@ const recentPosts = (await getCollection('blog'))
         </div>
       </div>
 
+      <!-- Photo mosaic — each panel shows a different Cloudinary transformation -->
       <div class="hero-media">
-        <!--
-          This image is served from Cloudinary's public "demo" cloud.
-          Replace "cld-sample-2" with any public ID from your own account.
-          f_auto and q_auto are applied automatically by CloudinaryImage.
-        -->
-        <CloudinaryImage
-          publicId="cld-sample-2"
-          alt="A stunning landscape photograph — optimized automatically by Cloudinary"
-          width={620}
-          height={520}
-          widths={[400, 620, 900]}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          crop="fill"
-          gravity="auto"
-          loading="eager"
-          class="hero-img"
-        />
+        <div class="mosaic">
+          <!-- Panel A: full colour, auto-optimized (f_auto + q_auto always applied) -->
+          <img
+            src={getImageUrl('cld-sample-2', { width: 800, height: 700, crop: 'fill', gravity: 'auto' })}
+            alt="Mountain landscape — auto-optimized by Cloudinary"
+            width={800}
+            height={700}
+            loading="eager"
+            decoding="async"
+            class="mosaic-a"
+          />
+          <!-- Panel B: grayscale transformation via e_grayscale -->
+          <img
+            src={getImageUrl('cld-sample-4', { width: 500, height: 330, crop: 'fill', gravity: 'auto', grayscale: true })}
+            alt="Landscape — Cloudinary grayscale transform"
+            width={500}
+            height={330}
+            loading="eager"
+            decoding="async"
+            class="mosaic-b"
+          />
+          <!-- Panel C: warm crop, different subject -->
+          <img
+            src={getImageUrl('cld-sample-3', { width: 500, height: 330, crop: 'fill', gravity: 'auto' })}
+            alt="Landscape — Cloudinary auto-crop"
+            width={500}
+            height={330}
+            loading="eager"
+            decoding="async"
+            class="mosaic-c"
+          />
+        </div>
+
+        <!-- Floating pill showing what f_auto automatically serves -->
+        <div class="format-pill" aria-label="Formats served by f_auto">
+          <span class="format-dot avif"></span><span>AVIF</span>
+          <span class="sep">·</span>
+          <span class="format-dot webp"></span><span>WebP</span>
+          <span class="sep">·</span>
+          <span class="format-dot jpeg"></span><span>JPEG</span>
+          <span class="pill-label">served by <code>f_auto</code></span>
+        </div>
       </div>
     </div>
   </section>
@@ -211,12 +237,89 @@ const recentPosts = (await getCollection('blog'))
     text-decoration: none;
   }
 
-  .hero-img {
-    width: 100%;
-    aspect-ratio: 6 / 5;
-    object-fit: cover;
+  /* ── Photo mosaic ── */
+  .hero-media {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .mosaic {
+    display: grid;
+    grid-template-columns: 58% 42%;
+    grid-template-rows: 1fr 1fr;
+    gap: 8px;
+    height: 460px;
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    box-shadow: 0 24px 64px -20px rgb(0 0 0 / 0.28);
+  }
+
+  /* Left panel — spans both rows */
+  .mosaic-a {
+    grid-row: 1 / 3;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .mosaic-b,
+  .mosaic-c {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Format pill ── */
+  .format-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
+    align-self: flex-start;
+  }
+
+  .format-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .format-dot.avif  { background: #7c3aed; }
+  .format-dot.webp  { background: #0ea5e9; }
+  .format-dot.jpeg  { background: #f59e0b; }
+
+  .sep {
+    opacity: 0.35;
+  }
+
+  .pill-label {
+    margin-left: 0.25rem;
+    padding-left: 0.5rem;
+    border-left: 1px solid var(--border);
+  }
+
+  .pill-label code {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .mosaic {
+      height: 300px;
+    }
   }
 
   /* ── Feature strip ── */
