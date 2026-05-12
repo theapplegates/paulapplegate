@@ -10,7 +10,7 @@ interface Props {
 }
 
 const {
-  title = 'CloudCanvas',
+  title = 'CloudAstro',
   description = 'A modern blog showcasing Cloudinary image optimization with Astro.',
   ogImage,
 } = Astro.props;
@@ -25,6 +25,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
+
+    <!-- Preconnect to Cloudinary CDN to eliminate connection setup latency for LCP -->
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
+    <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+
+    <slot name="head" />
 
     <title>{title}</title>
     <meta name="description" content={description} />

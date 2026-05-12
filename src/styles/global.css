@@ -3,7 +3,7 @@
   --bg: #ffffff;
   --bg-secondary: #f8fafc;
   --text: #0f172a;
-  --text-muted: #64748b;
+  --text-muted: #475569;
   --border: #e2e8f0;
   --accent: #7c3aed;
   --accent-hover: #6d28d9;
@@ -74,4 +74,16 @@ h4 {
   line-height: 1.25;
   font-weight: 700;
   letter-spacing: -0.025em;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

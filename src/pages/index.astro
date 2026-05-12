@@ -2,19 +2,42 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import BlogCard from '../components/BlogCard.astro';
-import { getImageUrl } from '../lib/cloudinary';
+import { getImageUrl, getSrcSet, getOgImageUrl } from '../lib/cloudinary';
 
-const recentPosts = (await getCollection('blog'))
+const allPosts = await getCollection('blog');
+const recentPosts = allPosts
   .sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
     b.data.publishDate.getTime() - a.data.publishDate.getTime()
   )
   .slice(0, 3);
+
+// OG image for the home page — use the most recent post's cover, or a known sample
+const ogImage = allPosts.length > 0
+  ? getOgImageUrl(allPosts[0].data.coverImage)
+  : getOgImageUrl('cld-sample-2');
+
+// Mosaic srcsets — Cloudinary generates each size on the fly
+const srcsetA = getSrcSet('cld-sample-2', [400, 800, 1200], { crop: 'fill', gravity: 'auto' });
+const srcsetB = getSrcSet('cld-sample-4', [300, 500, 800], { crop: 'fill', gravity: 'auto', grayscale: true });
+const srcsetC = getSrcSet('cld-sample-3', [300, 500, 800], { crop: 'fill', gravity: 'auto' });
+
+// LCP image src for the preload hint (largest mosaic panel)
+const lcpSrc = getImageUrl('cld-sample-2', { width: 800, height: 700, crop: 'fill', gravity: 'auto' });
 ---
 
 <Layout
-  title="CloudCanvas — Cloudinary-Powered Image Blog"
+  title="CloudAstro — Cloudinary-Powered Image Blog"
   description="A beginner-friendly blog template built with Astro and Cloudinary image optimization."
+  ogImage={ogImage}
 >
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={lcpSrc}
+    imagesrcset={srcsetA}
+    imagesizes="(max-width: 768px) 100vw, 58vw"
+  />
   <!-- ── Hero ─────────────────────────────────────────────── -->
   <section class="hero">
     <div class="hero-inner container">
@@ -43,17 +66,22 @@ const recentPosts = (await getCollection('blog'))
         <div class="mosaic">
           <!-- Panel A: full colour, auto-optimized (f_auto + q_auto always applied) -->
           <img
-            src={getImageUrl('cld-sample-2', { width: 800, height: 700, crop: 'fill', gravity: 'auto' })}
+            src={lcpSrc}
+            srcset={srcsetA}
+            sizes="(max-width: 768px) 100vw, 58vw"
             alt="Mountain landscape — auto-optimized by Cloudinary"
             width={800}
             height={700}
             loading="eager"
+            fetchpriority="high"
             decoding="async"
             class="mosaic-a"
           />
           <!-- Panel B: grayscale transformation via e_grayscale -->
           <img
             src={getImageUrl('cld-sample-4', { width: 500, height: 330, crop: 'fill', gravity: 'auto', grayscale: true })}
+            srcset={srcsetB}
+            sizes="(max-width: 768px) 50vw, 25vw"
             alt="Landscape — Cloudinary grayscale transform"
             width={500}
             height={330}
@@ -64,6 +92,8 @@ const recentPosts = (await getCollection('blog'))
           <!-- Panel C: warm crop, different subject -->
           <img
             src={getImageUrl('cld-sample-3', { width: 500, height: 330, crop: 'fill', gravity: 'auto' })}
+            srcset={srcsetC}
+            sizes="(max-width: 768px) 50vw, 25vw"
             alt="Landscape — Cloudinary auto-crop"
             width={500}
             height={330}
@@ -91,7 +121,7 @@ const recentPosts = (await getCollection('blog'))
     <div class="container features-grid">
       <div class="feature-card">
         <span class="feature-icon" aria-hidden="true">⚡</span>
-        <h3><code>f_auto</code></h3>
+        <h2><code>f_auto</code></h2>
         <p>
           Automatically serves WebP or AVIF to modern browsers, JPEG to older ones.
           Up to 80 % smaller files with no code changes.
@@ -99,7 +129,7 @@ const recentPosts = (await getCollection('blog'))
       </div>
       <div class="feature-card">
         <span class="feature-icon" aria-hidden="true">🎯</span>
-        <h3><code>q_auto</code></h3>
+        <h2><code>q_auto</code></h2>
         <p>
           Cloudinary analyses each image and finds the compression sweet spot —
           smallest file size the eye won't notice.
@@ -107,7 +137,7 @@ const recentPosts = (await getCollection('blog'))
       </div>
       <div class="feature-card">
         <span class="feature-icon" aria-hidden="true">📱</span>
-        <h3>Responsive</h3>
+        <h2>Responsive</h2>
         <p>
           <code>srcset</code> + <code>sizes</code> ensure every visitor downloads
           only the pixels their screen actually needs.
@@ -120,7 +150,7 @@ const recentPosts = (await getCollection('blog'))
   <section class="recent container">
     <div class="section-head">
       <h2>Recent Articles</h2>
-      <a href="/blog" class="view-all">View all &rarr;</a>
+      <a href="/blog" class="view-all" aria-label="View all blog posts">View all &rarr;</a>
     </div>
     <div class="posts-grid">
       {recentPosts.map(post => <BlogCard post={post} />)}
@@ -349,12 +379,12 @@ const recentPosts = (await getCollection('blog'))
     margin-bottom: 0.875rem;
   }
 
-  .feature-card h3 {
+  .feature-card h2 {
     font-size: 1.125rem;
     margin-bottom: 0.625rem;
   }
 
-  .feature-card h3 code {
+  .feature-card h2 code {
     font-family: var(--font-mono);
     color: var(--accent);
     background: var(--accent-light);
