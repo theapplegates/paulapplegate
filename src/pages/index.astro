@@ -1,9 +1,306 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import BlogCard from '../components/BlogCard.astro';
+import CloudinaryImage from '../components/CloudinaryImage.astro';
+
+const recentPosts = (await getCollection('blog'))
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 3);
 ---
 
-<Layout>
-  <div style="padding: 4rem 1.5rem; text-align: center;">
-    <h1>Coming soon…</h1>
-  </div>
+<Layout
+  title="AstroBlog — Fast Images with Cloudinary"
+  description="A beginner-friendly blog template built with Astro and Cloudinary image optimization."
+>
+  <!-- ── Hero ─────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-inner container">
+      <div class="hero-text">
+        <span class="badge">Powered by Cloudinary</span>
+        <h1>Build Fast.<br />Ship Beautiful.</h1>
+        <p>
+          A modern blog template that automatically optimizes every image with
+          <code>f_auto</code> and <code>q_auto</code> — no manual exports, no wasted bytes.
+        </p>
+        <div class="hero-cta">
+          <a href="/blog" class="btn-primary">Read the Blog</a>
+          <a
+            href="https://cloudinary.com"
+            target="_blank"
+            rel="noopener"
+            class="btn-ghost"
+          >
+            Learn Cloudinary &rarr;
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <!--
+          This image is served from Cloudinary's public "demo" cloud.
+          Replace "cld-sample-2" with any public ID from your own account.
+          f_auto and q_auto are applied automatically by CloudinaryImage.
+        -->
+        <CloudinaryImage
+          publicId="cld-sample-2"
+          alt="A stunning landscape photograph — optimized automatically by Cloudinary"
+          width={620}
+          height={520}
+          widths={[400, 620, 900]}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          crop="fill"
+          gravity="auto"
+          loading="eager"
+          class="hero-img"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Cloudinary feature strip ─────────────────────────── -->
+  <section class="features">
+    <div class="container features-grid">
+      <div class="feature-card">
+        <span class="feature-icon" aria-hidden="true">⚡</span>
+        <h3><code>f_auto</code></h3>
+        <p>
+          Automatically serves WebP or AVIF to modern browsers, JPEG to older ones.
+          Up to 80 % smaller files with no code changes.
+        </p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon" aria-hidden="true">🎯</span>
+        <h3><code>q_auto</code></h3>
+        <p>
+          Cloudinary analyses each image and finds the compression sweet spot —
+          smallest file size the eye won't notice.
+        </p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon" aria-hidden="true">📱</span>
+        <h3>Responsive</h3>
+        <p>
+          <code>srcset</code> + <code>sizes</code> ensure every visitor downloads
+          only the pixels their screen actually needs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Recent posts ──────────────────────────────────────── -->
+  <section class="recent container">
+    <div class="section-head">
+      <h2>Recent Articles</h2>
+      <a href="/blog" class="view-all">View all &rarr;</a>
+    </div>
+    <div class="posts-grid">
+      {recentPosts.map(post => <BlogCard post={post} />)}
+    </div>
+  </section>
 </Layout>
+
+<style>
+  /* ── Hero ── */
+  .hero {
+    padding: 5rem 1.5rem 6rem;
+    background: linear-gradient(160deg, var(--bg) 55%, var(--bg-secondary) 100%);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .hero-media {
+      order: -1;
+    }
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.875rem;
+    border-radius: 9999px;
+    background: var(--accent-light);
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-text h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    letter-spacing: -0.045em;
+    line-height: 1.08;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-text p {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    max-width: 44ch;
+    margin-bottom: 2.25rem;
+    line-height: 1.7;
+  }
+
+  .hero-text code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.05em 0.3em;
+    color: var(--accent);
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: background var(--transition), transform var(--transition);
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    background: transparent;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: border-color var(--transition), color var(--transition), transform var(--transition);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+
+  .hero-img {
+    width: 100%;
+    aspect-ratio: 6 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* ── Feature strip ── */
+  .features {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 1.5rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .feature-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.875rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .feature-card h3 code {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    background: var(--accent-light);
+    border-radius: var(--radius-sm);
+    padding: 0.1em 0.35em;
+    font-size: 0.95em;
+  }
+
+  .feature-card p {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ── Recent posts ── */
+  .recent {
+    padding: 5rem 1.5rem;
+  }
+
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-head h2 {
+    font-size: 1.875rem;
+    letter-spacing: -0.03em;
+  }
+
+  .view-all {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .view-all:hover {
+    text-decoration: underline;
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  /* Shared container utility */
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+</style>
