@@ -19,7 +19,7 @@ export interface CloudinaryOptions {
   crop?: 'fill' | 'fit' | 'scale' | 'crop' | 'thumb' | 'pad';
   /** Where to anchor the crop */
   gravity?: 'auto' | 'face' | 'center' | 'north' | 'south';
-  /** Gaussian blur strength (e.g. 300 for a hero backdrop) */
+  /** Gaussian blur strength — 2000 creates a cinematic background blur */
   blur?: number;
   grayscale?: boolean;
 }
@@ -55,4 +55,18 @@ export function getSrcSet(
   return widths
     .map(w => `${getImageUrl(publicId, { ...options, width: w })} ${w}w`)
     .join(', ');
+}
+
+/**
+ * Generates a 1200×630 Open Graph image URL via Cloudinary.
+ *
+ * Darkens the image slightly so any text overlay remains legible.
+ * Each blog post, listing page, and home page gets a unique OG card
+ * automatically — no design tool required.
+ */
+export function getOgImageUrl(publicId: string): string {
+  // Separate transformation steps chained with '/'
+  // 1. Crop to OG dimensions
+  // 2. Darken slightly so white text would be legible if added later
+  return `${BASE_URL}/c_fill,w_1200,h_630,g_auto/e_brightness:-15,f_auto,q_auto/${publicId}`;
 }
