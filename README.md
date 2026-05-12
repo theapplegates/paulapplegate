@@ -28,8 +28,8 @@ Built with [Astro 6](https://astro.build) and [Cloudinary](https://cloudinary.co
 ### 2. Clone and install
 
 ```bash
-git clone https://github.com/your-username/cloudastro.git
-cd cloudastro
+git clone https://github.com/musebe/my-portfolio.git
+cd my-portfolio
 npm install
 ```
 
