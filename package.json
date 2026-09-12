@@ -9,13 +9,19 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check",
+    "test": "node --test tests/*.test.mjs",
+    "cloudinary:breakpoints": "node scripts/cloudinary-breakpoints.mjs"
   },
   "dependencies": {
-    "astro": "^6.3.1"
+    "astro": "^6.3.1",
+    "hast-util-from-html": "^2.0.3",
+    "zod": "^4.6.2"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.9",
+    "@types/node": "^22.20.2",
     "typescript": "6.0.3"
   },
   "allowScripts": {

@@ -1,72 +1,30 @@
-/**
- * Cloudinary URL builder
- *
- * Every URL produced here includes `f_auto` and `q_auto` by default:
- *   f_auto — serves WebP to Chrome, AVIF where supported, JPEG as fallback
- *   q_auto — picks the lowest quality level the human eye won't notice
- *
- * Set PUBLIC_CLOUDINARY_CLOUD_NAME in your .env file.
- * Falls back to Cloudinary's public "demo" cloud so the site works out of the box.
- */
-
-const CLOUD_NAME = import.meta.env.PUBLIC_CLOUDINARY_CLOUD_NAME ?? 'demo';
-const BASE_URL = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload`;
+import * as images from './cloudinary-core.mjs';
 
 export interface CloudinaryOptions {
   width?: number;
   height?: number;
-  /** How to fit the image into the given dimensions */
-  crop?: 'fill' | 'fit' | 'scale' | 'crop' | 'thumb' | 'pad';
-  /** Where to anchor the crop */
+  cloudName?: string;
+  format?: 'jxl' | 'avif' | 'webp';
+  crop?: 'fill' | 'scale' | 'crop' | 'thumb' | 'pad';
   gravity?: 'auto' | 'face' | 'center' | 'north' | 'south';
-  /** Gaussian blur strength — 2000 creates a cinematic background blur */
   blur?: number;
   grayscale?: boolean;
 }
 
-function buildTransformations(options: CloudinaryOptions): string {
-  const t: string[] = ['f_auto', 'q_auto'];
+const cloudName = import.meta.env.PUBLIC_CLOUDINARY_CLOUD_NAME?.trim() || images.DEFAULT_CLOUD;
 
-  if (options.width)     t.push(`w_${options.width}`);
-  if (options.height)    t.push(`h_${options.height}`);
-  if (options.crop)      t.push(`c_${options.crop}`);
-  if (options.gravity)   t.push(`g_${options.gravity}`);
-  if (options.blur)      t.push(`e_blur:${options.blur}`);
-  if (options.grayscale) t.push('e_grayscale');
-
-  return t.join(',');
+export function getImageUrl(publicId: string, options: CloudinaryOptions = {}) {
+  return images.getImageUrl(publicId, { ...options, cloudName: options.cloudName || cloudName });
 }
 
-/** Returns a single optimized Cloudinary URL */
-export function getImageUrl(publicId: string, options: CloudinaryOptions = {}): string {
-  return `${BASE_URL}/${buildTransformations(options)}/${publicId}`;
+export function getSrcSet(publicId: string, widths?: number[], options: CloudinaryOptions = {}) {
+  return images.getSrcSet(publicId, widths, { ...options, cloudName: options.cloudName || cloudName });
 }
 
-/**
- * Returns a srcset string for responsive images.
- * Each entry is the same image re-encoded at a different pixel width —
- * the browser picks the best one based on the current viewport.
- */
-export function getSrcSet(
-  publicId: string,
-  widths: number[] = [400, 800, 1200, 1600],
-  options: Omit<CloudinaryOptions, 'width'> = {},
-): string {
-  return widths
-    .map(w => `${getImageUrl(publicId, { ...options, width: w })} ${w}w`)
-    .join(', ');
+export function getPictureData(publicId: string, options: CloudinaryOptions & { widths?: number[]; sizes?: string } = {}) {
+  return images.getPictureData(publicId, { ...options, cloudName: options.cloudName || cloudName });
 }
 
-/**
- * Generates a 1200×630 Open Graph image URL via Cloudinary.
- *
- * Darkens the image slightly so any text overlay remains legible.
- * Each blog post, listing page, and home page gets a unique OG card
- * automatically — no design tool required.
- */
-export function getOgImageUrl(publicId: string): string {
-  // Separate transformation steps chained with '/'
-  // 1. Crop to OG dimensions
-  // 2. Darken slightly so white text would be legible if added later
-  return `${BASE_URL}/c_fill,w_1200,h_630,g_auto/e_brightness:-15,f_auto,q_auto/${publicId}`;
+export function getOgImageUrl(publicId: string, options: Pick<CloudinaryOptions, 'cloudName'> = {}) {
+  return images.getOgImageUrl(publicId, { ...options, cloudName: options.cloudName || cloudName });
 }

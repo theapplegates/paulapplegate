@@ -1,49 +1,34 @@
 ---
-title: "Build a Fast Portfolio in Astro with Cloudinary Image Optimization"
-description: "Learn how f_auto and q_auto automatically shrink images by up to 80% with zero visual quality loss — and how to wire them into a reusable Astro component."
+title: "Responsive JXL, AVIF, and WebP Images with Cloudinary"
+description: "Serve JPEG XL first, with AVIF and WebP fallbacks, using a reusable Astro picture component."
 publishDate: 2024-12-15
+coverCloudName: "demo"
 coverImage: "cld-sample-2"
-coverAlt: "Scenic landscape — used here to demonstrate Cloudinary's automatic format selection"
+coverAlt: "Scenic landscape demonstrating responsive image formats"
 tags: ["cloudinary", "performance", "astro"]
 author: "Eugene Musebe"
 ---
 
-Portfolio sites live and die by their image performance. A single unoptimized JPEG hero can weigh 2 MB, tank your Core Web Vitals, and cost your visitors on metered mobile data plans.
+This template asks Cloudinary for three explicit image formats. The browser chooses the first format it supports, in this order: **JXL → AVIF → WebP**.
 
-Cloudinary solves this with two transformations you should apply to every image.
+## Format selection with picture
 
-## f_auto — automatic format
+Each `CloudinaryImage` component renders a `<picture>` containing `image/jxl`, `image/avif`, and `image/webp` sources. Every source has its own responsive `srcset` and the same `sizes` hint. The final `<img>` uses WebP for both `src` and `srcset`.
 
-`f_auto` instructs Cloudinary to serve the most efficient format the requesting browser understands:
+A browser that supports JPEG XL selects the first source. Otherwise it tries AVIF, then WebP. This is format capability selection; an HTTP error at a selected source does not automatically retry the next format.
 
-- **Chrome / Edge** → AVIF or WebP
-- **Safari** → WebP or HEIC
-- **Older browsers** → JPEG fallback
+## Quality and crop
 
-A 1.2 MB JPEG becomes ~80 KB AVIF delivered to Chrome — a **93 % reduction** with no perceptible quality difference.
+Each URL uses an explicit `f_jxl`, `f_avif`, or `f_webp`, alongside `q_auto` for quality. Actual file sizes depend on the photograph, dimensions, and encoder output.
 
-## q_auto — automatic quality
+The component scales the crop height with each candidate width. A 16:9 cover remains 16:9 at every size instead of downloading a differently shaped crop.
 
-`q_auto` analyses each image and picks the lowest compression level the human eye won't notice. A highly-detailed photograph needs more fidelity than a flat graphic; Cloudinary handles both cases without manual tuning.
+## Upload once, save the breakpoints
 
-## How this template applies both
+The upload command requests Cloudinary's responsive breakpoint analysis separately for all three formats. It saves the returned widths, image dimensions, cloud name, and version in `src/data/cloudinary-images.json`.
 
-Every URL produced by `src/lib/cloudinary.ts` always starts with `f_auto,q_auto`:
-
-```typescript
-// f_auto and q_auto are always prepended — you can't forget them
-const t: string[] = ['f_auto', 'q_auto'];
+```bash
+npm run cloudinary:breakpoints -- "src/images/blog/photo.jpg" --alt="Describe your photo"
 ```
 
-Passing an image through `<CloudinaryImage>` automatically produces a `srcset` with multiple widths, so the browser downloads only the size it actually needs.
-
-## The real-world numbers
-
-| Format | File size | Savings |
-|--------|-----------|---------|
-| Original JPEG | 1 200 KB | — |
-| JPEG q_auto | 310 KB | 74 % |
-| WebP f_auto + q_auto | 120 KB | 90 % |
-| AVIF f_auto + q_auto | 78 KB | 94 % |
-
-These numbers come from Cloudinary's own benchmarks on representative web images. Your results will vary, but the direction is always the same: smaller, faster, better Lighthouse scores.
+Paste the printed image tag into a Markdown post. The build consumes the saved JSON without needing private API credentials. See `CLOUDINARY.md` in the repository for the complete setup instructions.

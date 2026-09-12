@@ -2,6 +2,7 @@
 title: "Getting Started with Astro: Zero JS by Default"
 description: "Astro ships zero JavaScript to the browser by default. Here's why that matters for performance and how to set up your first Astro project in under five minutes."
 publishDate: 2024-12-01
+coverCloudName: "demo"
 coverImage: "cld-sample-5"
 coverAlt: "Abstract architectural lines representing the structured nature of Astro components"
 tags: ["astro", "getting-started", "performance"]
@@ -54,7 +55,7 @@ The fenced script block (`---`) is never sent to the browser. It runs once at bu
 
 ## Content Collections
 
-Astro's Content Collections give you type-safe access to your Markdown files. Define a schema in `src/content/config.ts`:
+Astro's Content Collections give you type-safe access to your Markdown files. Define a schema in `src/content.config.ts`:
 
 ```typescript
 const blog = defineCollection({
@@ -77,4 +78,4 @@ TypeScript knows the shape of every post — no `any`, no surprises.
 
 ## Next steps
 
-From here, adding Cloudinary image optimization is a natural next step. Every image in the template is automatically optimized through `f_auto` and `q_auto` without any extra configuration on your part. Just drop a Cloudinary public ID into your front matter and the `<CloudinaryImage>` component handles the rest.
+From here, adding Cloudinary image optimization is a natural next step. Every template image uses a responsive `<picture>` with JXL first, AVIF next, and WebP as the final fallback, with `q_auto` for compression. Just drop a Cloudinary public ID into your front matter and the `<CloudinaryImage>` component handles the rest.

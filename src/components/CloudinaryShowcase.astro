@@ -7,20 +7,21 @@
  * Drop this inside any blog post layout to let readers see the power
  * of Cloudinary without leaving the article.
  */
-import { getImageUrl } from '../lib/cloudinary';
+import CloudinaryImage from './CloudinaryImage.astro';
 
 interface Props {
   publicId: string;
+  cloudName?: string;
   alt: string;
 }
 
-const { publicId, alt } = Astro.props;
+const { publicId, cloudName, alt } = Astro.props;
 
 const variants = [
   {
-    code: 'f_auto, q_auto',
-    label: 'Auto-optimized',
-    note: 'WebP/AVIF served automatically',
+    code: 'JXL → AVIF → WebP',
+    label: 'Responsive formats',
+    note: 'JXL first, with AVIF and WebP fallbacks',
     options: { width: 640, height: 420, crop: 'fill' as const },
     featured: true,
   },
@@ -51,13 +52,15 @@ const variants = [
     {variants.map(({ code, label, note, options, featured }) => (
       <div class:list={['card', { featured }]}>
         <div class="img-wrap">
-          <img
-            src={getImageUrl(publicId, options)}
+          <CloudinaryImage
+            publicId={publicId}
+            cloudName={cloudName}
+            {...options}
+            sizes="(max-width: 620px) calc(100vw - 6.5rem), (max-width: 1040px) calc((100vw - 8.25rem) / 3), 303px"
             alt={`${alt} — ${label}`}
             width={640}
             height={420}
             loading="lazy"
-            decoding="async"
           />
         </div>
         <div class="info">
@@ -137,7 +140,8 @@ const variants = [
     overflow: hidden;
   }
 
-  .img-wrap img {
+  .img-wrap :global(picture),
+  .img-wrap :global(img) {
     width: 100%;
     height: 100%;
     object-fit: cover;
