@@ -9,7 +9,7 @@ const posts = (await getCollection('blog')).sort(
 );
 
 // OG image for the blog listing page — uses the most recent post's cover
-const ogImage = posts.length > 0 ? getOgImageUrl(posts[0].data.coverImage) : undefined;
+const ogImage = posts.length > 0 ? getOgImageUrl(posts[0].data.coverImage, { cloudName: posts[0].data.coverCloudName }) : undefined;
 ---
 
 <Layout
