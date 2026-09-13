@@ -1,1 +1,44 @@
-{}
+{
+  "paulapplegate-com/images/blog/Gulfstream-G800": {
+    "publicId": "images/blog/Gulfstream-G800",
+    "cloudName": "paulapplegate-com",
+    "width": 1672,
+    "height": 941,
+    "version": 1789258841,
+    "sizes": "(max-width: 720px) calc(100vw - 3rem), 672px",
+    "widths": {
+      "jxl": [
+        50,
+        398,
+        588,
+        788,
+        980,
+        1118,
+        1289,
+        1429,
+        1630,
+        1672
+      ],
+      "avif": [
+        50,
+        501,
+        771,
+        1011,
+        1237,
+        1485,
+        1672
+      ],
+      "webp": [
+        50,
+        444,
+        959,
+        977,
+        1164,
+        1165,
+        1520,
+        1610,
+        1672
+      ]
+    }
+  }
+}
