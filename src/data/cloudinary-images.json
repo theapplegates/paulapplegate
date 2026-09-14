@@ -40,5 +40,67 @@
         1672
       ]
     }
+  },
+  "paulapplegate-com/images/blog/vadim-sadovski-OxHm0L9_6ng-unsplash": {
+    "publicId": "images/blog/vadim-sadovski-OxHm0L9_6ng-unsplash",
+    "cloudName": "paulapplegate-com",
+    "width": 1955,
+    "height": 3000,
+    "version": 1789405798,
+    "sizes": "(max-width: 720px) calc(100vw - 3rem), 672px",
+    "widths": {
+      "jxl": [
+        50,
+        343,
+        532,
+        666,
+        827,
+        967,
+        1085,
+        1270,
+        1319,
+        1377,
+        1382,
+        1696,
+        1758,
+        1784,
+        1831,
+        1903,
+        1920
+      ],
+      "avif": [
+        50,
+        301,
+        521,
+        708,
+        859,
+        1090,
+        1262,
+        1452,
+        1615,
+        1807,
+        1889,
+        1910,
+        1920
+      ],
+      "webp": [
+        50,
+        353,
+        515,
+        669,
+        797,
+        946,
+        1076,
+        1208,
+        1300,
+        1453,
+        1570,
+        1729,
+        1801,
+        1910,
+        1914,
+        1920
+      ]
+    }
   }
 }

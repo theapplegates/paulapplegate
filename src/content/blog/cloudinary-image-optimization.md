@@ -36,3 +36,5 @@ npm run cloudinary:breakpoints -- "src/images/blog/photo.jpg" --alt="Describe yo
 ```
 
 Paste the printed image tag into a Markdown post. The build consumes the saved JSON without needing private API credentials. See `CLOUDINARY.md` in the repository for the complete setup instructions.
+
+<cloudinary-picture src="images/blog/vadim-sadovski-OxHm0L9_6ng-unsplash" cloud-name="paulapplegate-com" alt="How else would you start your day?" width="1955" height="3000" sizes="(max-width: 720px) calc(100vw - 3rem), 672px"></cloudinary-picture>
