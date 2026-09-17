@@ -2,7 +2,7 @@
 title: "Responsive Images with srcset, sizes, and Cloudinary"
 description: "Use picture for format selection and srcset with sizes for responsive image widths."
 publishDate: 2024-12-08
-coverCloudName: "demo"
+coverCloudName: "paulapplegate-com"
 coverImage: "cld-sample-4"
 coverAlt: "A photograph shown at multiple responsive sizes"
 tags: ["cloudinary", "responsive", "performance"]
