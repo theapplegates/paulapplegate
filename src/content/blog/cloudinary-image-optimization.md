@@ -2,7 +2,7 @@
 title: "Responsive JXL, AVIF, and WebP Images with Cloudinary"
 description: "Serve JPEG XL first, with AVIF and WebP fallbacks, using a reusable Astro picture component."
 publishDate: 2024-12-15
-coverCloudName: "demo"
+coverCloudName: "paulapplegate-com"
 coverImage: "cld-sample-2"
 coverAlt: "Scenic landscape demonstrating responsive image formats"
 tags: ["cloudinary", "performance", "astro"]
@@ -11,6 +11,8 @@ author: "Eugene Musebe"
 
 <cloudinary-picture src="images/blog/Gulfstream-G800" cloud-name="paulapplegate-com" alt="Describe your photo" width="1672" height="941" sizes="(max-width: 720px) calc(100vw - 3rem), 672px"></cloudinary-picture>
 
+
+<cloudinary-picture src="images/blog/mvhom9kgeg23ujtn16nv" cloud-name="paulapplegate-com" alt="Golden hour with a breathtaking house on a cliff" width="5272" height="2962" sizes="(max-width: 720px) calc(100vw - 3rem), 672px"></cloudinary-picture>
 
 
 This template asks Cloudinary for three explicit image formats. The browser chooses the first format it supports, in this order: **JXL → AVIF → WebP**.

@@ -2,7 +2,7 @@
 title: "Getting Started with Astro: Zero JS by Default"
 description: "Astro ships zero JavaScript to the browser by default. Here's why that matters for performance and how to set up your first Astro project in under five minutes."
 publishDate: 2024-12-01
-coverCloudName: "demo"
+coverCloudName: "paulapplegate-com"
 coverImage: "cld-sample-5"
 coverAlt: "Abstract architectural lines representing the structured nature of Astro components"
 tags: ["astro", "getting-started", "performance"]
