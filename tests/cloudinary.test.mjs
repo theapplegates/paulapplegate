@@ -8,9 +8,9 @@ import { assetFromResponse, breakpointRequests, requestCloudinary } from '../scr
 
 const sample = { public_id: 'blog/test', width: 1200, height: 800, version: 12345,
   responsive_breakpoints: [
-    { transformation: 'f_webp,q_auto', breakpoints: [{ width: 320 }, { width: 960 }] },
     { transformation: 'f_jxl,q_auto', breakpoints: [{ width: 200 }, { width: 700 }] },
     { transformation: 'f_avif,q_auto', breakpoints: [{ width: 300 }, { width: 800 }] },
+    { transformation: 'f_webp,q_auto', breakpoints: [{ width: 320 }, { width: 960 }] },
   ],
 };
 const failFile = { fail(message) { throw new Error(message); } };
