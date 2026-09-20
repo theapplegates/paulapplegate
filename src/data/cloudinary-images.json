@@ -220,5 +220,46 @@
         1920
       ]
     }
+  },
+  "paulapplegate-com/images/blog/ernesto-samaniego-86yrou4EYco-unsplash": {
+    "publicId": "images/blog/ernesto-samaniego-86yrou4EYco-unsplash",
+    "cloudName": "paulapplegate-com",
+    "width": 4160,
+    "height": 6240,
+    "version": 1789919834,
+    "sizes": "(max-width: 720px) calc(100vw - 3rem), 672px",
+    "widths": {
+      "jxl": [
+        50,
+        501,
+        821,
+        1116,
+        1312,
+        1455,
+        1635,
+        1763,
+        1920
+      ],
+      "avif": [
+        50,
+        699,
+        1266,
+        1596,
+        1898,
+        1920
+      ],
+      "webp": [
+        50,
+        461,
+        758,
+        923,
+        1135,
+        1333,
+        1585,
+        1601,
+        1662,
+        1920
+      ]
+    }
   }
 }
