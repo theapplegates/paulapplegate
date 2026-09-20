@@ -1,48 +1,13 @@
 ---
+import PublicKeyIcon from './PublicKeyIcon.astro';
+import { keyFilename, keyFingerprint } from '../data/public-key';
 const year = new Date().getFullYear();
 ---
-
-<footer class="footer">
-  <div class="inner">
-    <p>
-      Built with
-      <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>
-      &amp;
-      <a href="https://cloudinary.com" target="_blank" rel="noopener">Cloudinary</a>
-    </p>
-    <p class="copy">&copy; {year} CloudAstro</p>
-  </div>
-</footer>
-
+<footer class="footer"><div class="inner">
+  <div class="footer-top"><p>Paul Applegate <span>· Stay curious.</span></p><p class="credits">Built with <a href="https://astro.build">Astro</a> &amp; <a href="https://cloudinary.com">Cloudinary</a></p></div>
+  <div class="key-row"><a class="key-label" href="/public-key"><PublicKeyIcon /><span>OpenPGP public key</span></a><a class="fingerprint" href={`/${keyFilename}`} aria-label={`Paul Applegate public key, fingerprint ${keyFingerprint}`}>{keyFingerprint}</a></div>
+  <div class="footer-bottom"><p>&copy; {year} Paul Applegate</p><a href="#main-content">Back to top ↑</a></div>
+</div></footer>
 <style>
-  .footer {
-    border-top: 1px solid var(--border);
-    padding: 2rem 1.5rem;
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    text-align: center;
-  }
-
-  .inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0.375rem;
-    align-items: center;
-  }
-
-  .footer a {
-    color: var(--accent);
-    font-weight: 500;
-    text-decoration: none;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-  }
-
-  .copy {
-    opacity: 0.6;
-  }
+.footer{border-top:1px solid var(--border);padding:2.4rem 1.5rem;background:var(--bg-secondary);font-size:.75rem;color:var(--text-muted)}.inner{max-width:1152px;margin:auto}.footer-top,.footer-bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}.footer-top>p:first-child{color:var(--text);font-weight:500}.footer-top span{font-weight:400;color:var(--text-muted)}.footer a{color:inherit;text-underline-offset:4px}.key-row{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;padding:1.6rem 0;margin:1.2rem 0;border-block:1px solid var(--border)}.key-label{display:flex;align-items:center;gap:.6rem;white-space:nowrap;text-decoration:none}.key-label :global(svg){height:26px;width:26px;color:var(--accent)}.fingerprint{font-family:var(--font-mono);font-size:.66rem;line-height:2;max-width:75ch;overflow-wrap:anywhere}.footer-bottom{font-size:.65rem}.credits{font-size:.7rem}
 </style>
