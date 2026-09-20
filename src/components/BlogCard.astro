@@ -38,7 +38,7 @@ const date = publishDate.toLocaleDateString('en-US', {
       </div>
       <h2 class="card-title">{title}</h2>
       <p class="card-desc">{description}</p>
-      <time datetime={publishDate.toISOString()} class="card-date">{date}</time>
+      <div class="card-bottom"><time datetime={publishDate.toISOString()} class="card-date">{date}</time><span class="card-arrow" aria-hidden="true">↗</span></div>
     </div>
   </a>
 </article>
@@ -48,14 +48,15 @@ const date = publishDate.toLocaleDateString('en-US', {
     border-radius: var(--radius-md);
     overflow: hidden;
     border: 1px solid var(--border);
-    background: var(--bg);
+    background: #fffdf7;
     box-shadow: var(--shadow-sm);
     transition: box-shadow var(--transition), transform var(--transition);
   }
 
-  .card:hover {
+  .card:hover, .card:focus-within {
     box-shadow: var(--shadow-lg);
     transform: translateY(-3px);
+    animation: card-jiggle 650ms ease both;
   }
 
   .card-link {
@@ -124,4 +125,7 @@ const date = publishDate.toLocaleDateString('en-US', {
     font-size: 0.875rem;
     color: var(--text-muted);
   }
+  .card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .card-arrow { color: var(--accent); font-size: 1.4rem; }
+  @keyframes card-jiggle { 0%,100% { transform: translateY(-3px) rotate(0); } 25% { transform: translateY(-4px) rotate(-.7deg); } 65% { transform: translateY(-3px) rotate(.5deg); } }
 </style>

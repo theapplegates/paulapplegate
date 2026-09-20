@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PublicKeyIcon from '../components/PublicKeyIcon.astro';
+import { keyFilename, keyFingerprint } from '../data/public-key';
+import publicKey from '../../public/Paul_Applegate_0x88998D33CEE6B81F3218153B509C2715D090E6DB4D76BCD82F8EF4126D13A5E0_public.asc?raw';
+---
+<Layout title="OpenPGP Public Key | Paul Applegate" description="Paul Applegate’s public OpenPGP key, fingerprint, and download.">
+  <section class="key-page" aria-labelledby="key-title">
+    <a class="back" href="/">← Back to the cabinet</a>
+    <div class="title-icon"><PublicKeyIcon /></div><p class="eyebrow">IDENTITY & CORRESPONDENCE</p>
+    <h1 id="key-title">A public key.<br/><em>A personal signature.</em></h1>
+    <p class="intro">Paul Applegate’s post-quantum OpenPGP public key.</p>
+    <div class="actions"><a class="download" href={`/${keyFilename}`} download>Download public key ↓</a><button id="copy-pgp-key" type="button">Copy key</button><span id="pgp-copy-status" role="status"></span></div>
+    <dl><div class="fingerprint"><dt>Fingerprint (v6)</dt><dd>{keyFingerprint}</dd></div><div><dt>Primary algorithm</dt><dd>SLH-DSA-SHAKE-256s</dd></div><div><dt>Encryption subkey</dt><dd>ML-KEM-1024 + X448</dd></div><div><dt>Hash algorithm</dt><dd>SHA3-512</dd></div><div><dt>OpenPGP profile</dt><dd>v6 / RFC 9580 framing</dd></div></dl>
+    <p class="compatibility">Experimental post-quantum algorithms require compatible software. <a href="https://slh-dsa.paulapplegate.com">Explore Paul’s implementation ↗</a></p>
+    <details><summary>View ASCII-armored public key</summary><pre id="pgp-public-key"><code>{publicKey}</code></pre></details>
+  </section>
+</Layout>
+<script>
+  const button = document.querySelector<HTMLButtonElement>('#copy-pgp-key');
+  const status = document.querySelector('#pgp-copy-status');
+  const block = document.querySelector('#pgp-public-key');
+  button?.addEventListener('click', async () => {
+    if (!block || !status) return;
+    try { await navigator.clipboard.writeText(block.textContent!.trim() + '\n'); status.textContent = 'Public key copied.'; }
+    catch { block.closest('details')?.setAttribute('open', ''); status.textContent = 'Select and copy the key below, or use Download.'; }
+  });
+</script>
+<style>
+.key-page{max-width:900px;margin:auto;padding:3.5rem 1.5rem 5rem}.back{font-size:.8rem}.title-icon{margin:2.5rem 0 1rem;color:var(--accent)}.title-icon :global(svg){width:50px;height:50px}.eyebrow{font-size:.64rem;letter-spacing:.15em;color:var(--text-muted)}h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.15;margin:1rem 0;letter-spacing:-.05em;font-weight:500}h1 em{font-weight:400;color:var(--accent)}.intro{color:var(--text-muted)}.actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin:2rem 0}.download,button{display:inline-block;border:1px solid var(--text);padding:.75rem 1rem;font-size:.8rem;border-radius:4px;cursor:pointer;text-decoration:none}.download{color:var(--bg);background:var(--text)}button{color:var(--text);background:transparent}#pgp-copy-status{font-size:.75rem;color:var(--accent)}dl{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border);gap:0 2rem}dl>div{padding:1.1rem 0;border-bottom:1px solid var(--border);min-width:0}dt{font-size:.7rem;color:var(--text-muted);margin-bottom:.4rem}dd{font-size:.9rem}.fingerprint{grid-column:1 / -1}.fingerprint dd{font-family:var(--font-mono);overflow-wrap:anywhere;line-height:1.9}.compatibility{font-size:.8rem;color:var(--text-muted);padding:1.5rem 0}.compatibility a{white-space:normal}details{border:1px solid var(--border);border-radius:6px;background:var(--bg-secondary)}summary{padding:1rem;cursor:pointer;font-size:.8rem}pre{max-height:400px;overflow:auto;padding:1rem;border-top:1px solid var(--border);font-family:var(--font-mono);font-size:.7rem;white-space:pre-wrap;overflow-wrap:anywhere}@media(max-width:450px){dl{grid-template-columns:1fr}}
+</style>

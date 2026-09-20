@@ -10,8 +10,8 @@ interface Props {
 }
 
 const {
-  title = 'CloudAstro',
-  description = 'A modern blog showcasing Cloudinary image optimization with Astro.',
+  title = 'Paul Applegate — A Cabinet of Curiosities',
+  description = 'A personal corner for science, small experiments, and a more thoughtful web.',
   ogImage,
 } = Astro.props;
 
@@ -47,8 +47,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)
     {ogImage && <meta name="twitter:image" content={ogImage} />}
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <Header />
-    <main>
+    <main id="main-content">
       <slot />
     </main>
     <Footer />

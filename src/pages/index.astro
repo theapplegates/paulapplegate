@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import BlogCard from '../components/BlogCard.astro';
 import { getOgImageUrl } from '../lib/cloudinary';
+import Observatory from '../components/Observatory.astro';
 import CloudinaryImage from '../components/CloudinaryImage.astro';
 
 const allPosts = await getCollection('blog');
@@ -18,36 +19,16 @@ const ogImage = allPosts.length > 0
   : getOgImageUrl('cld-sample-2', { cloudName: 'demo' });
 
 ---
-
-<Layout
-  title="CloudAstro — Cloudinary-Powered Image Blog"
-  description="A beginner-friendly blog template built with Astro and Cloudinary image optimization."
-  ogImage={ogImage}
->
-  <!-- ── Hero ─────────────────────────────────────────────── -->
+<Layout title="Paul Applegate — A Cabinet of Curiosities" description="Science, small experiments, and the pleasure of figuring things out. A personal cabinet of curiosities by Paul Applegate." ogImage={ogImage}>
   <section class="hero">
     <div class="hero-inner container">
       <div class="hero-text">
-        <span class="badge">Powered by Cloudinary</span>
-        <h1>Build Fast.<br />Ship Beautiful.</h1>
-        <p>
-          A modern blog with crisp, responsive images. Enjoy JPEG XL first,
-          with AVIF and WebP fallbacks for your browser.
-        </p>
-        <div class="hero-cta">
-          <a href="/blog" class="btn-primary">Read the Blog</a>
-          <a
-            href="https://cloudinary.com"
-            target="_blank"
-            rel="noopener"
-            class="btn-ghost"
-          >
-            Learn Cloudinary &rarr;
-          </a>
-        </div>
+        <p class="eyebrow"><span aria-hidden="true">✳</span> A PERSONAL CORNER OF THE INTERNET</p>
+        <h1>Stay curious.<br/>Look <em>closer.</em></h1>
+        <p class="intro">There’s a whole universe hiding in the details. A place for science, beautiful images, and the quiet pleasure of figuring things out.</p>
+        <a class="explore" href="#field-notes">Open the cabinet <span aria-hidden="true">↘</span></a>
+        <p class="small-note">Made by Paul. Best explored slowly.</p>
       </div>
-
-      <!-- Photo mosaic — each panel shows a different Cloudinary transformation -->
       <div class="hero-media">
         <div class="mosaic">
           <CloudinaryImage
@@ -72,339 +53,23 @@ const ogImage = allPosts.length > 0
             pictureClass="mosaic-c"
           />
         </div>
-
-        <div class="format-pill" aria-label="Format preference: JXL, AVIF, WebP">
-          <span class="format-dot jxl"></span><span>JXL</span>
-          <span class="sep">→</span>
-          <span class="format-dot avif"></span><span>AVIF</span>
-          <span class="sep">→</span>
-          <span class="format-dot webp"></span><span>WebP</span>
-        </div>
+        <div class="image-caption"><span>01 — A FEW DIFFERENT WAYS OF SEEING</span><span>JXL → AVIF → WebP</span></div>
       </div>
     </div>
   </section>
-
-  <!-- ── Cloudinary feature strip ─────────────────────────── -->
-  <section class="features">
-    <div class="container features-grid">
-      <div class="feature-card">
-        <span class="feature-icon" aria-hidden="true">⚡</span>
-        <h2>JPEG XL first</h2>
-        <p>
-          Your browser selects JXL when supported, then AVIF, with WebP
-          as the final fallback.
-        </p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon" aria-hidden="true">🎯</span>
-        <h2><code>q_auto</code></h2>
-        <p>
-          Cloudinary analyses each image and finds the compression sweet spot —
-          smallest file size the eye won't notice.
-        </p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon" aria-hidden="true">📱</span>
-        <h2>Responsive</h2>
-        <p>
-          <code>srcset</code> + <code>sizes</code> ensure every visitor downloads
-          only the pixels their screen actually needs.
-        </p>
-      </div>
-    </div>
+  <section id="field-notes" class="recent container" aria-labelledby="notes-title">
+    <div class="section-head"><div><p class="eyebrow">FROM THE WORKBENCH</p><h2 id="notes-title">Three things to open.</h2></div><a href="/blog">All field notes <span aria-hidden="true">↗</span></a></div>
+    <p class="section-intro">Little experiments in making the web a more beautiful place. Pick a card and take a closer look.</p>
+    <div class="posts-grid">{recentPosts.map(post => <BlogCard post={post} />)}</div>
   </section>
-
-  <!-- ── Recent posts ──────────────────────────────────────── -->
-  <section class="recent container">
-    <div class="section-head">
-      <h2>Recent Articles</h2>
-      <a href="/blog" class="view-all" aria-label="View all blog posts">View all &rarr;</a>
-    </div>
-    <div class="posts-grid">
-      {recentPosts.map(post => <BlogCard post={post} />)}
-    </div>
-  </section>
+  <Observatory />
+  <section class="closing container" aria-labelledby="closing-title"><p class="eyebrow">AN OPEN-ENDED COLLECTION</p><h2 id="closing-title">The best part of learning?<br/><em>There’s always another question.</em></h2><p>This corner of the web has room for both careful engineering and a little wonder. Thanks for stopping by.</p><span class="signature">Paul Applegate</span></section>
 </Layout>
-
 <style>
-  /* ── Hero ── */
-  .hero {
-    padding: 5rem 1.5rem 6rem;
-    background: linear-gradient(160deg, var(--bg) 55%, var(--bg-secondary) 100%);
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-  }
-
-  .hero-inner {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 4rem;
-    align-items: center;
-  }
-
-  @media (max-width: 768px) {
-    .hero-inner {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
-
-    .hero-media {
-      order: -1;
-    }
-  }
-
-  .badge {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.875rem;
-    border-radius: 9999px;
-    background: var(--accent-light);
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-text h1 {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    letter-spacing: -0.045em;
-    line-height: 1.08;
-    margin-bottom: 1.25rem;
-  }
-
-  .hero-text p {
-    font-size: 1.125rem;
-    color: var(--text-muted);
-    max-width: 44ch;
-    margin-bottom: 2.25rem;
-    line-height: 1.7;
-  }
-
-  .hero-text code {
-    font-family: var(--font-mono);
-    font-size: 0.9em;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 0.05em 0.3em;
-    color: var(--accent);
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    display: inline-block;
-    background: var(--accent);
-    color: #fff;
-    font-weight: 600;
-    font-size: 0.9375rem;
-    padding: 0.75rem 1.75rem;
-    border-radius: var(--radius-sm);
-    text-decoration: none;
-    transition: background var(--transition), transform var(--transition);
-  }
-
-  .btn-primary:hover {
-    background: var(--accent-hover);
-    transform: translateY(-1px);
-    text-decoration: none;
-  }
-
-  .btn-ghost {
-    display: inline-block;
-    background: transparent;
-    color: var(--text);
-    font-weight: 600;
-    font-size: 0.9375rem;
-    padding: 0.75rem 1.75rem;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border);
-    text-decoration: none;
-    transition: border-color var(--transition), color var(--transition), transform var(--transition);
-  }
-
-  .btn-ghost:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-1px);
-    text-decoration: none;
-  }
-
-  /* ── Photo mosaic ── */
-  .hero-media {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .mosaic {
-    display: grid;
-    grid-template-columns: minmax(0, 58fr) minmax(0, 42fr);
-    grid-template-rows: 1fr 1fr;
-    gap: 8px;
-    height: 460px;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: 0 24px 64px -20px rgb(0 0 0 / 0.28);
-  }
-
-  /* Left panel — spans both rows */
-  .mosaic :global(.mosaic-a) {
-    grid-row: 1 / 3;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .mosaic :global(.mosaic-b),
-  .mosaic :global(.mosaic-c),
-  .mosaic :global(img) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* ── Format pill ── */
-  .format-pill {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.5rem 1rem;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 9999px;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    width: fit-content;
-    box-shadow: var(--shadow-sm);
-    align-self: flex-start;
-  }
-
-  .format-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .format-dot.avif  { background: #7c3aed; }
-  .format-dot.webp  { background: #0ea5e9; }
-  .format-dot.jxl  { background: #f59e0b; }
-
-  .sep {
-    opacity: 0.35;
-  }
-
-  .pill-label {
-    margin-left: 0.25rem;
-    padding-left: 0.5rem;
-    border-left: 1px solid var(--border);
-  }
-
-  .pill-label code {
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-    color: var(--accent);
-  }
-
-  @media (max-width: 768px) {
-    .mosaic {
-      height: 300px;
-    }
-  }
-
-  /* ── Feature strip ── */
-  .features {
-    background: var(--bg-secondary);
-    border-bottom: 1px solid var(--border);
-    padding: 4rem 1.5rem;
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .feature-card {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .feature-icon {
-    font-size: 2rem;
-    display: block;
-    margin-bottom: 0.875rem;
-  }
-
-  .feature-card h2 {
-    font-size: 1.125rem;
-    margin-bottom: 0.625rem;
-  }
-
-  .feature-card h2 code {
-    font-family: var(--font-mono);
-    color: var(--accent);
-    background: var(--accent-light);
-    border-radius: var(--radius-sm);
-    padding: 0.1em 0.35em;
-    font-size: 0.95em;
-  }
-
-  .feature-card p {
-    font-size: 0.9375rem;
-    color: var(--text-muted);
-    line-height: 1.65;
-  }
-
-  /* ── Recent posts ── */
-  .recent {
-    padding: 5rem 1.5rem;
-  }
-
-  .section-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2.5rem;
-  }
-
-  .section-head h2 {
-    font-size: 1.875rem;
-    letter-spacing: -0.03em;
-  }
-
-  .view-all {
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: var(--accent);
-    text-decoration: none;
-  }
-
-  .view-all:hover {
-    text-decoration: underline;
-  }
-
-  .posts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-
-  /* Shared container utility */
-  .container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
+.container{max-width:var(--max-width);margin:0 auto}.hero{padding:4.5rem 1.5rem 4rem;border-bottom:1px solid var(--border);overflow:hidden}.hero-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4rem;align-items:center}.eyebrow{font-size:.66rem;font-weight:600;letter-spacing:.16em;color:var(--text-muted)}.eyebrow span{color:var(--accent);font-size:1.2rem;margin-right:.5rem}h1{font-size:clamp(3.5rem,6vw,5.5rem);line-height:1.04;letter-spacing:-.065em;margin:1.7rem 0}h1 em{font-weight:400;color:var(--accent)}.intro{max-width:40ch;color:var(--text-muted);font-size:1.04rem;line-height:1.8}.explore{display:inline-flex;gap:2rem;align-items:center;background:var(--text);color:var(--bg);padding:.9rem 1.25rem;margin:1.8rem 0 1.2rem;font-size:.8rem;text-decoration:none;border-radius:3px}.explore:hover{background:var(--accent)}.explore span{font-size:1.2rem}.small-note{font-size:.7rem;color:var(--text-muted)}
+.hero-media{display:flex;flex-direction:column;gap:.9rem}.mosaic{display:grid;grid-template-columns:minmax(0,58fr) minmax(0,42fr);grid-template-rows:1fr 1fr;gap:8px;height:460px;border-radius:110px 8px 8px 8px;overflow:hidden}.mosaic :global(.mosaic-a){grid-row:1 / 3;width:100%;height:100%;object-fit:cover;display:block}.mosaic :global(.mosaic-b),.mosaic :global(.mosaic-c),.mosaic :global(img){width:100%;height:100%;object-fit:cover;display:block}.image-caption{display:flex;justify-content:space-between;gap:1rem;font-size:.53rem;letter-spacing:.08em;color:var(--text-muted)}
+.recent{padding:4.5rem 1.5rem 5rem}.section-head{display:flex;align-items:end;justify-content:space-between;gap:1.5rem}.section-head h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:500;margin-top:.7rem;letter-spacing:-.045em}.section-head>a{font-size:.8rem;color:var(--text);white-space:nowrap;text-underline-offset:5px}.section-intro{font-size:.9rem;color:var(--text-muted);margin:1rem 0 2rem}.posts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2rem}
+.closing{padding:5rem 1.5rem;text-align:center}.closing h2{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:500;margin:1.5rem 0;line-height:1.3}.closing h2 em{font-weight:400;color:var(--accent)}.closing>p:not(.eyebrow){font-size:.9rem;max-width:53ch;margin:auto;color:var(--text-muted)}.signature{display:block;font-style:italic;font-size:1.4rem;margin-top:1.4rem}
+@media(max-width:768px){.hero{padding:2.5rem 1.5rem 3rem}.hero-inner{grid-template-columns:1fr;gap:2.5rem}.mosaic{height:300px}.image-caption{font-size:.48rem}.recent{padding-top:3rem}.section-head{align-items:start}.section-head>a{padding-top:.2rem}.closing{padding:3.5rem 1.5rem}}
+@media(max-width:360px){.posts-grid{grid-template-columns:minmax(0,1fr)}.section-head{flex-direction:column}}
 </style>

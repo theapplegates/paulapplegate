@@ -1,0 +1,77 @@
+---
+const destinations = [
+  { id: 'moon', name: 'The Moon', seconds: 384400 / 299792.458, value: '1.28', unit: 'seconds', distance: '384,400 km · average distance', note: 'Even our nearest celestial neighbor arrives a little late. The moonlight you see left the Moon about a second ago.', source: 'https://science.nasa.gov/moon/facts/' },
+  { id: 'sun', name: 'The Sun', seconds: 149597870.7 / 299792.458, value: '8m 19s', unit: 'of travel time', distance: '149.6 million km · one astronomical unit', note: 'Sunlight is already a memory when it reaches your skin. It left the Sun’s visible surface about eight minutes ago.', source: 'https://science.nasa.gov/sun/facts/' },
+  { id: 'year', name: 'One light-year', seconds: 31557600, value: '1', unit: 'year', distance: '9.46 trillion km · a unit of distance', note: 'A light-year measures distance, not time: the distance light travels in one Julian year. Space makes historians of us all.', source: 'https://spaceplace.nasa.gov/light-year/en/' },
+];
+---
+<section id="observatory" aria-labelledby="observatory-title">
+  <div class="observatory-inner">
+    <div class="observatory-heading"><span class="eyebrow">THE POCKET OBSERVATORY</span><span class="edition">EXPERIMENT 001 / LIGHT & TIME</span></div>
+    <div class="experiment">
+      <div class="explanation">
+        <h2 id="observatory-title">Nothing you see<br/>is quite <em>now.</em></h2>
+        <p>Light is fast. Space is enormous. Every time you look up, you’re looking into the past.</p>
+        <fieldset class="destinations"><legend>Choose a distance to explore</legend>{destinations.map(d => <label><input type="radio" name="destination" value={d.id} checked={d.id === 'sun'} data-value={d.value} data-unit={d.unit} data-distance={d.distance} data-note={d.note} data-source={d.source}/><span>{d.name}</span></label>)}</fieldset>
+        <div class="reading" aria-live="polite" aria-atomic="true"><p class="readout"><strong id="travel-value">8m 19s</strong><span id="travel-unit">of travel time</span></p><p id="travel-note">{destinations[1].note}</p></div>
+      </div>
+      <div class="instrument">
+        <div class="instrument-top"><span>ONE-WAY LIGHT TRAVEL</span><span class="instrument-cross" aria-hidden="true">+</span></div>
+        <svg viewBox="0 0 480 360" class="orbit-art" role="img" aria-labelledby="orbit-title orbit-desc">
+          <title id="orbit-title">Light traveling from a source toward an observer</title><desc id="orbit-desc">An illustrative diagram. Distances and object sizes are not to scale.</desc>
+          <defs><pattern id="observatory-grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#bed0af" stroke-opacity=".07" stroke-width="1"/></pattern><radialGradient id="sun-glow"><stop stop-color="#eeb77e" stop-opacity=".2"/><stop offset="1" stop-color="#eeb77e" stop-opacity="0"/></radialGradient></defs>
+          <rect width="480" height="360" fill="url(#observatory-grid)"/>
+          <circle cx="190" cy="180" r="154" fill="none" stroke="#a9bb9a" stroke-opacity=".2"/>
+          <circle cx="190" cy="180" r="112" fill="none" stroke="#a9bb9a" stroke-opacity=".2"/>
+          <circle cx="190" cy="180" r="70" fill="none" stroke="#a9bb9a" stroke-opacity=".2"/>
+          <path d="M190 20V340M30 180H440" stroke="#a9bb9a" stroke-opacity=".2" stroke-dasharray="3 7"/>
+          <circle cx="190" cy="180" r="100" fill="url(#sun-glow)"/>
+          <circle cx="190" cy="180" r="28" fill="#edb17b"/>
+          <circle cx="190" cy="180" r="36" fill="none" stroke="#edb17b" stroke-opacity=".4"/>
+          <path d="M227 180H389" stroke="#edb17b" stroke-width="1.5"/>
+          <path d="m381 175 8 5-8 5" fill="none" stroke="#edb17b" stroke-width="1.5"/>
+          <circle cx="402" cy="180" r="10" fill="#b6c9a5"/>
+          <circle id="light-pulse" cx="227" cy="180" r="5" fill="#fff9e9" opacity="0"/>
+          <text x="190" y="240" text-anchor="middle" fill="#d5decf" font-size="10" letter-spacing="2">SOURCE</text><text x="402" y="217" text-anchor="middle" fill="#d5decf" font-size="10" letter-spacing="2">YOU</text>
+          <text x="190" y="305" text-anchor="middle" fill="#a0b39a" font-size="10">c = 299,792,458 m/s</text>
+        </svg>
+        <p id="travel-distance">{destinations[1].distance}</p>
+        <div class="instrument-bottom"><button type="button" id="send-pulse">Send a light pulse <span aria-hidden="true">↗</span></button><span id="pulse-status" role="status">Diagram not to scale.<br/>Playback compressed to 3 seconds.</span></div>
+      </div>
+    </div>
+    <div class="observatory-foot"><span>A SMALL REMINDER OF HOW BIG EVERYTHING IS.</span><a id="travel-source" href={destinations[1].source} target="_blank" rel="noopener">Explore the science at NASA ↗</a></div>
+    <noscript><p class="no-script">Enable JavaScript to switch distances and play the pulse. The Sun’s approximate travel time is shown above.</p></noscript>
+  </div>
+</section>
+<script>
+  const root = document.getElementById('observatory');
+  if (root) {
+    const value = root.querySelector('#travel-value')!;
+    const unit = root.querySelector('#travel-unit')!;
+    const note = root.querySelector('#travel-note')!;
+    const distance = root.querySelector('#travel-distance')!;
+    const source = root.querySelector<HTMLAnchorElement>('#travel-source')!;
+    const pulse = root.querySelector<SVGCircleElement>('#light-pulse')!;
+    const button = root.querySelector<HTMLButtonElement>('#send-pulse')!;
+    const status = root.querySelector('#pulse-status')!;
+    let animation: Animation | undefined;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    function resetPulse() { animation?.cancel(); clearTimeout(timer); button.disabled = false; status.textContent = 'Diagram not to scale. Playback compressed to 3 seconds.'; }
+    root.querySelectorAll<HTMLInputElement>('input[name="destination"]').forEach(input => input.addEventListener('change', () => {
+      resetPulse();
+      value.textContent = input.dataset.value!; unit.textContent = input.dataset.unit!;
+      note.textContent = input.dataset.note!; distance.textContent = input.dataset.distance!; source.href = input.dataset.source!;
+    }));
+    button.addEventListener('click', () => {
+      resetPulse();
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { status.textContent = 'Light received. Motion is off; the actual travel time is shown beside the diagram.'; return; }
+      button.disabled = true; status.textContent = 'Light in transit — illustrative 3-second playback.';
+      animation = pulse.animate([{ transform: 'translateX(0)', opacity: 1 }, { transform: 'translateX(175px)', opacity: 1 }], { duration: 3000, easing: 'linear' });
+      timer = setTimeout(() => { button.disabled = false; status.textContent = 'Light received. Actual travel time: ' + value.textContent + ' ' + (unit.textContent === 'of travel time' ? '' : unit.textContent) + '.'; }, 3000);
+    });
+  }
+</script>
+<style>
+#observatory{background:#1d382f;color:#f2f1e4;padding:3rem 1.5rem}.observatory-inner{max-width:1152px;margin:auto}.observatory-heading,.observatory-foot{display:flex;justify-content:space-between;gap:1rem;font-size:.62rem;letter-spacing:.12em;color:#bac9b3}.observatory-heading{border-bottom:1px solid #476052;padding-bottom:1.4rem}.experiment{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;padding:3.5rem 0}.explanation h2{font-size:clamp(2.4rem,4.4vw,3.8rem);font-weight:500;line-height:1.08;letter-spacing:-.055em;margin-bottom:1.5rem}.explanation em{font-weight:400;color:#edb17b}.explanation>p{max-width:38ch;font-size:.96rem;color:#c3ccba}.destinations{border:0;display:flex;flex-wrap:wrap;gap:.5rem;margin:1.8rem 0}.destinations legend{font-size:.7rem;color:#c3ccba;padding-bottom:.75rem}.destinations label{position:relative;cursor:pointer}.destinations input{position:absolute;opacity:0;width:1px;height:1px}.destinations span{display:block;padding:.55rem .9rem;font-size:.73rem;border:1px solid #70846f;border-radius:3px;color:#e5e9dc}.destinations input:checked+span{background:#edb17b;color:#213d35;border-color:#edb17b}.destinations input:focus-visible+span{outline:2px solid #f3d1ae;outline-offset:4px}.readout{display:flex;align-items:baseline;gap:1rem}.readout strong{font-size:3.4rem;line-height:1.2;font-weight:400;letter-spacing:-.06em}.readout span{color:#c3ccba;font-size:.8rem}#travel-note{font-size:.82rem;color:#c3ccba;max-width:45ch;margin-top:1rem;min-height:5.2em}.instrument{border:1px solid #52664f;background:#183228;padding:1.2rem 1.5rem;align-self:center}.instrument-top{display:flex;justify-content:space-between;align-items:center;font-size:.55rem;letter-spacing:.17em;color:#c3ccba}.instrument-cross{font-size:1.2rem}.orbit-art{display:block;width:100%;height:auto;margin:.4rem 0}#travel-distance{text-align:center;font-size:.68rem;color:#d2dcc9;margin-bottom:1.5rem}.instrument-bottom{border-top:1px solid #476052;padding-top:1rem;display:flex;gap:1rem;justify-content:space-between;align-items:center}button{background:transparent;border:0;color:#f1d0ac;font-size:.75rem;cursor:pointer;text-align:left}button:disabled{opacity:.55;cursor:wait}#pulse-status{font-size:.58rem;color:#b4c3ab;max-width:24ch;text-align:right}.observatory-foot{border-top:1px solid #476052;padding-top:1.5rem;align-items:center}.observatory-foot a{color:#e8c6a2;letter-spacing:0;font-size:.72rem}.no-script{font-size:.8rem;margin-top:1rem}
+@media(max-width:850px){.experiment{gap:2rem}.readout strong{font-size:2.8rem}.instrument{padding:1rem}.edition{display:none}}@media(max-width:650px){.experiment{grid-template-columns:1fr;padding:2.5rem 0;gap:1.5rem}.observatory-foot{flex-direction:column;align-items:start}.explanation h2{font-size:2.7rem}#travel-note{min-height:0}.instrument{max-width:480px;width:100%;margin:auto}}
+</style>
