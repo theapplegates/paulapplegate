@@ -36,10 +36,12 @@ const destinations = [
           <text x="190" y="305" text-anchor="middle" fill="#a0b39a" font-size="10">c = 299,792,458 m/s</text>
         </svg>
         <p id="travel-distance">{destinations[1].distance}</p>
-        <div class="instrument-bottom"><button type="button" id="send-pulse">Send a light pulse <span aria-hidden="true">↗</span></button><span id="pulse-status" role="status">Diagram not to scale.<br/>Playback compressed to 3 seconds.</span></div>
+        <audio id="pulse-audio" src="/sounds/light-pulse.mp3" preload="auto"></audio>
+        <div class="instrument-bottom"><div class="pulse-controls"><label class="sound-setting"><input type="checkbox" id="pulse-sound" checked /> Sound</label><button type="button" id="send-pulse">Send a light pulse <span aria-hidden="true">↗</span></button></div><span id="pulse-status" role="status">Diagram not to scale.<br/>Playback compressed to 3 seconds.</span></div>
       </div>
     </div>
     <div class="observatory-foot"><span>A SMALL REMINDER OF HOW BIG EVERYTHING IS.</span><a id="travel-source" href={destinations[1].source} target="_blank" rel="noopener">Explore the science at NASA ↗</a></div>
+    <p class="sound-credit">Thanks to <a href="https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/" target="_blank" rel="noopener">Josh W. Comeau</a> for the sound and the inspiration to make the web a little more playful.</p>
     <noscript><p class="no-script">Enable JavaScript to switch distances and play the pulse. The Sun’s approximate travel time is shown above.</p></noscript>
   </div>
 </section>
@@ -54,9 +56,23 @@ const destinations = [
     const pulse = root.querySelector<SVGCircleElement>('#light-pulse')!;
     const button = root.querySelector<HTMLButtonElement>('#send-pulse')!;
     const status = root.querySelector('#pulse-status')!;
+    const audio = root.querySelector<HTMLAudioElement>('#pulse-audio')!;
+    const sound = root.querySelector<HTMLInputElement>('#pulse-sound')!;
+    const soundPreferenceKey = 'observatory-sound-enabled';
+    audio.volume = 0.4;
+    try { sound.checked = localStorage.getItem(soundPreferenceKey) !== 'false'; } catch { /* Storage may be unavailable in private browsing. */ }
+    function stopSound() {
+      audio.pause();
+      if (audio.readyState > 0) audio.currentTime = 0;
+    }
+    sound.addEventListener('change', () => {
+      if (!sound.checked) stopSound();
+      try { localStorage.setItem(soundPreferenceKey, String(sound.checked)); } catch { /* The control still works without storage. */ }
+    });
+    window.addEventListener('pagehide', stopSound);
     let animation: Animation | undefined;
     let timer: ReturnType<typeof setTimeout> | undefined;
-    function resetPulse() { animation?.cancel(); clearTimeout(timer); button.disabled = false; status.textContent = 'Diagram not to scale. Playback compressed to 3 seconds.'; }
+    function resetPulse() { animation?.cancel(); clearTimeout(timer); stopSound(); button.disabled = false; status.textContent = 'Diagram not to scale. Playback compressed to 3 seconds.'; }
     root.querySelectorAll<HTMLInputElement>('input[name="destination"]').forEach(input => input.addEventListener('change', () => {
       resetPulse();
       value.textContent = input.dataset.value!; unit.textContent = input.dataset.unit!;
@@ -64,6 +80,9 @@ const destinations = [
     }));
     button.addEventListener('click', () => {
       resetPulse();
+      // Play directly from the click so Safari can authorize audio on the first tap.
+      // A blocked or failed audio request must never interrupt the light experiment.
+      if (sound.checked) void audio.play().catch(() => {});
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { status.textContent = 'Light received. Motion is off; the actual travel time is shown beside the diagram.'; return; }
       button.disabled = true; status.textContent = 'Light in transit — illustrative 3-second playback.';
       animation = pulse.animate([{ transform: 'translateX(0)', opacity: 1 }, { transform: 'translateX(175px)', opacity: 1 }], { duration: 3000, easing: 'linear' });
@@ -72,6 +91,7 @@ const destinations = [
   }
 </script>
 <style>
+.pulse-controls{display:flex;flex-direction:column;align-items:flex-start;gap:.65rem;flex-shrink:0}.sound-setting{display:inline-flex;align-items:center;gap:.45rem;font-size:.7rem;color:#c3ccba;cursor:pointer}.sound-setting input{accent-color:#edb17b;width:1rem;height:1rem}.sound-credit{font-size:.7rem;color:#bac9b3;margin-top:1rem;line-height:1.6}.sound-credit a{color:#e8c6a2;text-underline-offset:3px}
 #observatory{background:#1d382f;color:#f2f1e4;padding:3rem 1.5rem}.observatory-inner{max-width:1152px;margin:auto}.observatory-heading,.observatory-foot{display:flex;justify-content:space-between;gap:1rem;font-size:.62rem;letter-spacing:.12em;color:#bac9b3}.observatory-heading{border-bottom:1px solid #476052;padding-bottom:1.4rem}.experiment{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;padding:3.5rem 0}.explanation h2{font-size:clamp(2.4rem,4.4vw,3.8rem);font-weight:500;line-height:1.08;letter-spacing:-.055em;margin-bottom:1.5rem}.explanation em{font-weight:400;color:#edb17b}.explanation>p{max-width:38ch;font-size:.96rem;color:#c3ccba}.destinations{border:0;display:flex;flex-wrap:wrap;gap:.5rem;margin:1.8rem 0}.destinations legend{font-size:.7rem;color:#c3ccba;padding-bottom:.75rem}.destinations label{position:relative;cursor:pointer}.destinations input{position:absolute;opacity:0;width:1px;height:1px}.destinations span{display:block;padding:.55rem .9rem;font-size:.73rem;border:1px solid #70846f;border-radius:3px;color:#e5e9dc}.destinations input:checked+span{background:#edb17b;color:#213d35;border-color:#edb17b}.destinations input:focus-visible+span{outline:2px solid #f3d1ae;outline-offset:4px}.readout{display:flex;align-items:baseline;gap:1rem}.readout strong{font-size:3.4rem;line-height:1.2;font-weight:400;letter-spacing:-.06em}.readout span{color:#c3ccba;font-size:.8rem}#travel-note{font-size:.82rem;color:#c3ccba;max-width:45ch;margin-top:1rem;min-height:5.2em}.instrument{border:1px solid #52664f;background:#183228;padding:1.2rem 1.5rem;align-self:center}.instrument-top{display:flex;justify-content:space-between;align-items:center;font-size:.55rem;letter-spacing:.17em;color:#c3ccba}.instrument-cross{font-size:1.2rem}.orbit-art{display:block;width:100%;height:auto;margin:.4rem 0}#travel-distance{text-align:center;font-size:.68rem;color:#d2dcc9;margin-bottom:1.5rem}.instrument-bottom{border-top:1px solid #476052;padding-top:1rem;display:flex;gap:1rem;justify-content:space-between;align-items:center}button{background:transparent;border:0;color:#f1d0ac;font-size:.75rem;cursor:pointer;text-align:left}button:disabled{opacity:.55;cursor:wait}#pulse-status{font-size:.58rem;color:#b4c3ab;max-width:24ch;text-align:right}.observatory-foot{border-top:1px solid #476052;padding-top:1.5rem;align-items:center}.observatory-foot a{color:#e8c6a2;letter-spacing:0;font-size:.72rem}.no-script{font-size:.8rem;margin-top:1rem}
 @media(max-width:850px){.experiment{gap:2rem}.readout strong{font-size:2.8rem}.instrument{padding:1rem}.edition{display:none}}@media(max-width:650px){.experiment{grid-template-columns:1fr;padding:2.5rem 0;gap:1.5rem}.observatory-foot{flex-direction:column;align-items:start}.explanation h2{font-size:2.7rem}#travel-note{min-height:0}.instrument{max-width:480px;width:100%;margin:auto}}
 </style>
