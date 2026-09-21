@@ -261,5 +261,72 @@
         1920
       ]
     }
+  },
+  "paulapplegate-com/images/blog/nenad-radojcic-kIQoxt8-srU-unsplash": {
+    "publicId": "images/blog/nenad-radojcic-kIQoxt8-srU-unsplash",
+    "cloudName": "paulapplegate-com",
+    "width": 5073,
+    "height": 7609,
+    "version": 1789951542,
+    "sizes": "(max-width: 720px) calc(100vw - 3rem), 672px",
+    "widths": {
+      "jxl": [
+        50,
+        393,
+        616,
+        738,
+        842,
+        993,
+        1126,
+        1221,
+        1282,
+        1383,
+        1473,
+        1555,
+        1699,
+        1766,
+        1851,
+        1911,
+        1914,
+        1920
+      ],
+      "avif": [
+        50,
+        419,
+        611,
+        741,
+        862,
+        993,
+        1117,
+        1219,
+        1328,
+        1426,
+        1602,
+        1702,
+        1806,
+        1917,
+        1920
+      ],
+      "webp": [
+        50,
+        447,
+        609,
+        728,
+        842,
+        996,
+        1096,
+        1188,
+        1272,
+        1362,
+        1445,
+        1525,
+        1595,
+        1662,
+        1736,
+        1807,
+        1870,
+        1920
+      ]
+    }
   }
 }

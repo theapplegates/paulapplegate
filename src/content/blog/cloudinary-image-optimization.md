@@ -17,6 +17,10 @@ author: "Eugene Musebe"
 
 <cloudinary-picture src="images/blog/ernesto-samaniego-86yrou4EYco-unsplash" cloud-name="paulapplegate-com" alt="A nice day for a drink" width="4160" height="6240" sizes="(max-width: 720px) calc(100vw - 3rem), 672px"></cloudinary-picture>
 
+
+Final Image Test
+<cloudinary-picture src="images/blog/nenad-radojcic-kIQoxt8-srU-unsplash" cloud-name="paulapplegate-com" alt="A village on the ocean" width="5073" height="7609" sizes="(max-width: 720px) calc(100vw - 3rem), 672px"></cloudinary-picture>
+
 This template asks Cloudinary for three explicit image formats. The browser chooses the first format it supports, in this order: **JXL → AVIF → WebP**.
 
 ## Format selection with picture
