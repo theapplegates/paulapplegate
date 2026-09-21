@@ -1,16 +1,19 @@
 ---
 const pathname = Astro.url.pathname;
 ---
+
 <header class="header">
   <nav class="nav" aria-label="Main navigation">
-    <a href="/" class="logo" aria-label="Paul Applegate — home"><span class="mark" aria-hidden="true">pa.</span><span>Paul Applegate<span class="tagline">A CABINET OF CURIOSITIES</span></span></a>
-    <ul class="nav-links">
-      <li><a href="/blog" aria-current={pathname.startsWith('/blog') ? 'page' : undefined}>Field notes</a></li>
-      <li><a href="/#observatory">The observatory <span aria-hidden="true">↗</span></a></li>
-      <li><a href="/public-key" aria-current={pathname.startsWith('/public-key') ? 'page' : undefined}>Public key</a></li>
-    </ul>
+	<a href="/" class="logo" aria-label="Paul Applegate — home"><span class="mark" aria-hidden="true">pa.</span><span>Paul Applegate<span class="tagline">A CABINET OF CURIOSITIES</span></span></a>
+	<ul class="nav-links">
+	  <li><a href="/jxlsetup" aria-current={pathname.startsWith('/jxlsetup') ? 'page' : undefined}>JXL Setup</a></li>
+	  <li><a href="/blog" aria-current={pathname.startsWith('/blog') ? 'page' : undefined}>Field notes</a></li>
+	  <li><a href="/#observatory">The observatory <span aria-hidden="true">↗</span></a></li>
+	  <li><a href="/public-key" aria-current={pathname.startsWith('/public-key') ? 'page' : undefined}>Public key</a></li>
+	</ul>
   </nav>
 </header>
+
 <style>
 .header{position:sticky;top:0;z-index:100;background:rgb(247 245 238 / .96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
 .nav{max-width:var(--max-width);margin:auto;padding:1.1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:2rem}

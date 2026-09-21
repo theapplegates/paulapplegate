@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="JXL Setup — Paul Applegate" description="Instructions for enabling JPEG XL images in your browser.">
+  <article class="jxl-guide">
+    <a class="back-link" href="/">← Back to the cabinet</a>
+    <h1>Enabling JXL in browsers</h1>
+    <p class="intro">JPEG XL (JXL) is an image format. Use the instructions below to check your browser’s settings. Availability depends on your browser version and build.</p>
+    <div class="table-scroll" role="region" aria-label="Browser setup summary" tabindex="0">
+      <table>
+        <thead><tr><th scope="col">Browser</th><th scope="col">What to do</th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><a href="#safari">Safari</a></th><td>No flag needed on supported versions.</td></tr>
+          <tr><th scope="row"><a href="#chrome">Chrome</a></th><td>Check for the JXL image format flag.</td></tr>
+          <tr><th scope="row"><a href="#firefox">Firefox</a></th><td>Check for the JPEG XL preference in a build with JXL support.</td></tr>
+          <tr><th scope="row"><a href="#opera">Opera</a></th><td>Check whether your build offers a JXL flag.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Copy the settings addresses below and paste them into your browser’s address bar.</p>
+
+    <section id="safari" aria-labelledby="safari-title">
+      <h2 id="safari-title">Safari</h2>
+      <p>On Safari versions with built-in JXL support, there is no flag to enable. Keep Safari and your operating system up to date.</p>
+    </section>
+    <section id="chrome" aria-labelledby="chrome-title">
+      <h2 id="chrome-title">Chrome</h2>
+      <ol>
+        <li>Enter <code>chrome://flags/#enable-jxl-image-format</code> in the address bar.</li>
+        <li>If the JXL flag is available, set it to <strong>Enabled</strong>.</li>
+        <li>Click <strong>Relaunch</strong>.</li>
+      </ol>
+      <p>If the flag is missing, that alone does not tell you whether JXL is supported or enabled in your build.</p>
+    </section>
+    <section id="firefox" aria-labelledby="firefox-title">
+      <h2 id="firefox-title">Firefox</h2>
+      <ol>
+        <li>Enter <code>about:config</code> in the address bar.</li>
+        <li>If prompted, choose <strong>Accept the Risk and Continue</strong>.</li>
+        <li>Search for <code>image.jxl.enabled</code>.</li>
+        <li>If the preference exists, toggle it to <strong>true</strong>.</li>
+        <li>Restart Firefox if needed.</li>
+      </ol>
+      <p>The preference only works in builds that include a JXL decoder. Creating a missing preference does not add JXL support.</p>
+    </section>
+    <section id="opera" aria-labelledby="opera-title">
+      <h2 id="opera-title">Opera</h2>
+      <ol>
+        <li>Try <code>opera://flags/#enable-jxl-image-format</code> in the address bar.</li>
+        <li>If that address does not open, try <code>chrome://flags/#enable-jxl-image-format</code>.</li>
+        <li>If a JXL flag is available, set it to <strong>Enabled</strong> and click <strong>Relaunch</strong>.</li>
+      </ol>
+      <p>The flag may not be available in every Opera version.</p>
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .jxl-guide{max-width:800px;margin:0 auto;padding:3.5rem 1.5rem 5rem;color:var(--text);line-height:1.8}
+  .back-link{font-size:.85rem}a{color:var(--accent);text-underline-offset:4px}
+  h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;letter-spacing:-.04em;margin:1.5rem 0}
+  h2{font-size:1.6rem;line-height:1.3;margin:0 0 1rem}.intro{font-size:1.1rem;color:var(--text-muted)}
+  p{margin:1rem 0}section{border-top:1px solid var(--border);margin-top:2rem;padding-top:2rem;scroll-margin-top:10rem}
+  ol{padding-left:1.5rem}li{padding-left:.3rem;margin:.65rem 0}
+  code{font-size:.9em;background:rgb(127 127 127 / .1);padding:.15rem .35rem;border-radius:4px;overflow-wrap:anywhere}
+  .table-scroll{overflow-x:auto;margin:2rem 0}table{width:100%;border-collapse:collapse;text-align:left;font-size:.9rem}
+  th,td{padding:.85rem;border-bottom:1px solid var(--border);vertical-align:top}thead{background:rgb(127 127 127 / .06)}
+  @media(max-width:600px){.jxl-guide{padding-top:2rem}th,td{padding:.65rem}}
+</style>
