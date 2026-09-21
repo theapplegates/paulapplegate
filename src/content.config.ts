@@ -14,7 +14,7 @@ const blog = defineCollection({
     coverCloudName: z.string().optional(),
     coverAlt: z.string(),
     tags: z.array(z.string()).default([]),
-    author: z.string().default('Eugene Musebe'),
+    author: z.string().default('Paul Applegate'),
   }),
 });
 
