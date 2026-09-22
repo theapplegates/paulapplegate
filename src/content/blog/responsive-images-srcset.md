@@ -9,6 +9,66 @@ tags: ["cloudinary", "responsive", "performance"]
 author: "Eugene Musebe"
 ---
 
+<picture>
+  <source
+	type="image/jxl"
+	srcset="
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_480/f_jxl/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.jxl 480w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_1255/f_jxl/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.jxl 1255w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_2161/f_jxl/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.jxl 2161w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_2368/f_jxl/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.jxl 2368w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_2934/f_jxl/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.jxl 2934w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_3417/f_jxl/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.jxl 3417w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_3608/f_jxl/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.jxl 3608w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_3733/f_jxl/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.jxl 3733w"
+	sizes="(max-width: 9333px) 40vw, 3733px"
+  />
+  <source
+	type="image/avif"
+	srcset="
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_480/f_avif/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.avif 480w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_1255/f_avif/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.avif 1255w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_2161/f_avif/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.avif 2161w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_2368/f_avif/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.avif 2368w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_2934/f_avif/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.avif 2934w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_3417/f_avif/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.avif 3417w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_3608/f_avif/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.avif 3608w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_3733/f_avif/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.avif 3733w"
+	sizes="(max-width: 9333px) 40vw, 3733px"
+  />
+  <source
+	type="image/webp"
+	srcset="
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_480/f_webp/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.webp 480w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_1255/f_webp/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.webp 1255w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_2161/f_webp/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.webp 2161w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_2368/f_webp/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.webp 2368w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_2934/f_webp/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.webp 2934w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_3417/f_webp/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.webp 3417w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_3608/f_webp/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.webp 3608w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_3733/f_webp/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.webp 3733w"
+	sizes="(max-width: 9333px) 40vw, 3733px"
+  />
+  <img
+	src="https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_3733/f_webp/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.webp"
+	srcset="
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_480/f_webp/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.webp 480w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_1255/f_webp/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.webp 1255w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_2161/f_webp/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.webp 2161w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_2368/f_webp/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.webp 2368w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_2934/f_webp/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.webp 2934w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_3417/f_webp/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.webp 3417w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_3608/f_webp/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.webp 3608w,
+	https://res.cloudinary.com/paulapplegate-com/image/upload/q_auto/c_scale,w_3733/f_webp/v1790047319/breakpoints/axtjtfoohsd2l7h7toom.webp 3733w"
+	sizes="(max-width: 9333px) 40vw, 3733px"
+	alt=""
+	loading="lazy"
+	width="3733"
+	height="5597"
+  />
+</picture>
+
+
 Responsive images let the browser choose an image width that suits its layout, display density, and loading preferences.
 
 ## Formats and widths are separate decisions
