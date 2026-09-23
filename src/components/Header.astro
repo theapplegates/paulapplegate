@@ -10,14 +10,23 @@ const pathname = Astro.url.pathname;
 	  <li><a href="/blog" aria-current={pathname.startsWith('/blog') ? 'page' : undefined}>Field notes</a></li>
 	  <li><a href="/#observatory">The observatory <span aria-hidden="true">↗</span></a></li>
 	  <li><a href="/public-key" aria-current={pathname.startsWith('/public-key') ? 'page' : undefined}>Public key</a></li>
+	  <li class="search-slot"><div id="search"></div></li>
 	</ul>
   </nav>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+  <script src="/pagefind/pagefind-ui.js" defer></script>
+  <script is:inline>
+	window.addEventListener('DOMContentLoaded', () => {
+	  if (window.PagefindUI) new PagefindUI({ element: '#search', showSubResults: true });
+	});
+  </script>
 </header>
 
 <style>
 .header{position:sticky;top:0;z-index:100;background:rgb(247 245 238 / .96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
 .nav{max-width:var(--max-width);margin:auto;padding:1.1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:2rem}
 .logo{display:flex;gap:.8rem;align-items:center;font-size:1rem;font-weight:600;color:var(--text);text-decoration:none;line-height:1.4}.mark{border:1px solid var(--text);border-radius:50%;width:42px;height:42px;display:grid;place-items:center;font-size:1.25rem;font-style:italic}
-.tagline{display:block;font-size:.56rem;letter-spacing:.17em;color:var(--text-muted);margin-top:.2rem}.nav-links{display:flex;gap:1.8rem;list-style:none;font-size:.8rem}.nav-links a{color:var(--text);text-decoration:none;padding:.6rem 0}.nav-links a:hover,.nav-links a[aria-current]{color:var(--accent);text-decoration:underline;text-underline-offset:5px}
-@media(max-width:600px){.nav{flex-wrap:wrap;gap:.6rem;padding:.8rem 1.5rem}.nav-links{width:100%;justify-content:space-between;gap:.5rem;font-size:.75rem}.tagline{font-size:.55rem}}
+.tagline{display:block;font-size:.56rem;letter-spacing:.17em;color:var(--text-muted);margin-top:.2rem}.nav-links{display:flex;gap:1.8rem;list-style:none;font-size:.8rem;margin:0;padding:0;align-items:center}.nav-links a{color:var(--text);text-decoration:none;padding:.6rem 0}.nav-links a:hover,.nav-links a[aria-current]{color:var(--accent);text-decoration:underline;text-underline-offset:5px}
+.search-slot{display:flex;align-items:center;margin-top:-4px}.search-slot #search{--pagefind-ui-scale:.65;min-width:200px}
+@media(max-width:600px){.nav{flex-wrap:wrap;gap:.6rem;padding:.8rem 1.5rem}.nav-links{width:100%;justify-content:space-between;gap:.5rem;font-size:.75rem}.search-slot{width:100%}.search-slot #search{width:100%}.tagline{font-size:.55rem}}
 </style>

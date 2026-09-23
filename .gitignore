@@ -26,3 +26,6 @@ pnpm-debug.log*
 
 # Temporary manifest writes
 src/data/*.tmp
+
+# Pagefind search index (dev symlink to dist/pagefind)
+public/pagefind
