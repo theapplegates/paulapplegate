@@ -9,6 +9,8 @@ tags: ["astro", "getting-started", "performance"]
 author: "Eugene Musebe"
 ---
 
+<cloudinary-picture src="images/blog/volodymyr-lymariev-N7yu3wLuuPQ-unsplash" cloud-name="paulapplegate-com" alt="A wooden vase" width="3600" height="5400" sizes="(max-width: 720px) calc(100vw - 3rem), 672px"></cloudinary-picture>
+
 Most modern frameworks ship a JavaScript runtime to every visitor — even pages that don't need it. Astro takes the opposite approach: HTML and CSS by default, JavaScript only when you opt in.
 
 ## Why zero JS matters

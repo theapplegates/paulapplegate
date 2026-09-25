@@ -328,5 +328,62 @@
         1920
       ]
     }
+  },
+  "paulapplegate-com/images/blog/volodymyr-lymariev-N7yu3wLuuPQ-unsplash": {
+    "publicId": "images/blog/volodymyr-lymariev-N7yu3wLuuPQ-unsplash",
+    "cloudName": "paulapplegate-com",
+    "width": 3600,
+    "height": 5400,
+    "version": 1790369882,
+    "sizes": "(max-width: 720px) calc(100vw - 3rem), 672px",
+    "widths": {
+      "jxl": [
+        50,
+        396,
+        603,
+        776,
+        777,
+        1262,
+        1347,
+        1416,
+        1500,
+        1585,
+        1697,
+        1782,
+        1833,
+        1883,
+        1920
+      ],
+      "avif": [
+        50,
+        408,
+        615,
+        841,
+        1064,
+        1275,
+        1476,
+        1736,
+        1915,
+        1920
+      ],
+      "webp": [
+        50,
+        428,
+        641,
+        829,
+        892,
+        1038,
+        1168,
+        1287,
+        1395,
+        1519,
+        1529,
+        1809,
+        1890,
+        1907,
+        1915,
+        1920
+      ]
+    }
   }
 }
