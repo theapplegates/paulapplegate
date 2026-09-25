@@ -109,34 +109,47 @@ section[id] { scroll-margin-top: 6rem; }
 .skip-link:focus { top: 1rem; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
 
-/* Pagefind search drawer — give results a background and a scrollbar */
-.pagefind-ui {
+/* Pagefind search — boxed, scrolling dropdown under the nav input.
+   #search scoping is deliberate: pagefind-ui.css uses two-class selectors
+   (.pagefind-ui__drawer.svelte-…), so an ID is needed to win the cascade. */
+#search .pagefind-ui {
   --pagefind-ui-background: var(--bg);
   --pagefind-ui-text: var(--text);
   --pagefind-ui-border: var(--border);
   --pagefind-ui-primary: var(--accent);
   --pagefind-ui-tag: var(--bg-secondary);
 }
-.pagefind-ui__form { position: relative; }
-.pagefind-ui__drawer {
+#search .pagefind-ui__form { position: relative; }
+#search .pagefind-ui__drawer {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 6px);
   right: 0;
+  left: auto;
   z-index: 150;
-  min-width: min(420px, calc(100vw - 2rem));
+  display: block;
+  width: 440px;
+  max-width: calc(100vw - 2rem);
+  max-height: min(480px, calc(100vh - 140px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
   padding: 1rem;
 }
-.pagefind-ui__results-area {
+#search .pagefind-ui__hidden { display: none; }
+#search .pagefind-ui__results-area {
   min-width: 0;
   margin-top: 0;
-  max-height: min(480px, calc(100vh - 180px));
-  overflow-y: auto;
 }
-.pagefind-ui__results-area::-webkit-scrollbar { width: 8px; }
-.pagefind-ui__results-area::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 4px; }
-.pagefind-ui__results-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-.pagefind-ui__results-area::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+#search .pagefind-ui__drawer::-webkit-scrollbar { width: 8px; }
+#search .pagefind-ui__drawer::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 4px; }
+#search .pagefind-ui__drawer::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+#search .pagefind-ui__drawer::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+#search mark {
+  background: #f7e600;
+  color: inherit;
+  padding: 0 .1em;
+  border-radius: 2px;
+}
