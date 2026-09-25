@@ -14,11 +14,16 @@ const pathname = Astro.url.pathname;
 	</ul>
   </nav>
   <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
-  <script src="/pagefind/pagefind-ui.js" defer></script>
+  <script src="/pagefind/pagefind-ui.js" defer data-cfasync="false"></script>
   <script is:inline>
-	window.addEventListener('DOMContentLoaded', () => {
-	  if (window.PagefindUI) new PagefindUI({ element: '#search', showSubResults: true });
-	});
+	let pagefindInit = false;
+	function initPagefind() {
+	  if (pagefindInit || !window.PagefindUI) return;
+	  pagefindInit = true;
+	  new PagefindUI({ element: '#search', showSubResults: true });
+	}
+	window.addEventListener('DOMContentLoaded', initPagefind);
+	window.addEventListener('load', initPagefind);
   </script>
 </header>
 
