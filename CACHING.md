@@ -5,8 +5,10 @@ This repo builds Cloudinary URLs with the format baked into the URL path
 that choice makes caching simple and deterministic, and shows the measured
 proof that the cache is being honored.
 
-All evidence below was captured live on 2026-09-20 against the real asset
-`images/blog/Gulfstream-G800` on the `paulapplegate-com` cloud.
+All evidence below was captured live on 2026-09-20 and re-verified on
+2026-09-26. Cloudinary has since switched this cloud's CDN provider from
+Fastly to Cloudflare, so the `Server-Timing` token is `cld-cloudflare` rather
+than `cld-fastly`; the hit/miss semantics are unchanged.
 
 ## The URL is the cache key
 
@@ -30,8 +32,9 @@ independent objects on the CDN. Nothing is shared or negotiated between them.
 
 ## Measured proof the cache is honored
 
-Cloudinary delivers through Fastly and reports cache status in the
-`Server-Timing` header. Look for `desc=hit` vs `desc=miss`.
+Cloudinary delivers through a CDN — Cloudflare for this cloud — and reports
+cache status in the `Server-Timing` header. Look for `desc=hit` vs
+`desc=miss`.
 
 ### Repeated request for the JXL URL
 
@@ -44,17 +47,17 @@ content-type: image/jxl
 etag: "b7a340ebdffc4f7fe3158a2d0b1ee6a0"
 cache-control: private, no-transform, immutable, max-age=2592000
 vary: Save-Data
-server-timing: cld-fastly;dur=7;...;desc=hit,...
+server-timing: cld-cloudflare;dur=7;...;desc=hit,...
 ```
 
 Second identical request, seconds later:
 
 ```
-server-timing: cld-fastly;dur=4;...;desc=hit,...
+server-timing: cld-cloudflare;dur=4;...;desc=hit,...
 ```
 
 Same `etag`, same `content-length`, and `desc=hit` with a 4–7 ms CDN time —
-the object was served straight from the Fastly cache, not regenerated.
+the object was served straight from the CDN cache, not regenerated.
 
 ### All three explicit formats — each cached independently
 
@@ -72,7 +75,7 @@ as the URL design intends.
 The same image requested with `f_auto` (a URL nobody had fetched before):
 
 ```
-server-timing: cld-fastly;dur=360;...;desc=miss,...,cloudinary;dur=331;...
+server-timing: cld-cloudflare;dur=360;...;desc=miss,...,cloudinary;dur=331;...
 ```
 
 `desc=miss`, 360 ms, and an extra `cloudinary;dur=331` segment — the request
@@ -148,16 +151,16 @@ Or in the browser:
 3. Image rows show **(disk cache)** or **(memory cache)** in the Size column
    on reload — that is `cache-control: immutable, max-age=2592000` doing its
    job.
-4. Click a row and check **Response Headers** for `server-timing: cld-fastly;...;desc=hit`.
+4. Click a row and check **Response Headers** for `server-timing: cld-cloudflare;...;desc=hit`.
 
 ## Summary
 
 - Explicit `f_jxl`/`f_avif`/`f_webp` put the format in the URL, so each
   variant is a separate, deterministic cache entry with no `Vary: Accept`
   fan-out.
-- Measured: repeated requests return `desc=hit` from Fastly in single-digit
-  milliseconds; the first request of a new URL returns `desc=miss` and
-  generates the derivative once.
+- Measured: repeated requests return `desc=hit` from the CDN edge in
+  single-digit milliseconds; the first request of a new URL returns `desc=miss`
+  and generates the derivative once.
 - `cache-control: private, no-transform, immutable, max-age=2592000` gives
   30-day browser caching with zero revalidation, and `v<version>` busts the
   cache automatically when an asset is re-uploaded.

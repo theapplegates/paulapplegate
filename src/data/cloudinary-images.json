@@ -385,5 +385,128 @@
         1920
       ]
     }
+  },
+  "paulapplegate-com/images/blog/bY2vbO99zv-3840": {
+    "publicId": "images/blog/bY2vbO99zv-3840",
+    "cloudName": "paulapplegate-com",
+    "width": 3840,
+    "height": 2489,
+    "version": 1790466438,
+    "sizes": "(max-width: 720px) calc(100vw - 3rem), 672px",
+    "widths": {
+      "jxl": [
+        50,
+        930,
+        1420,
+        1845,
+        1920
+      ],
+      "avif": [
+        50,
+        1511,
+        1920
+      ],
+      "webp": [
+        50,
+        935,
+        1438,
+        1673,
+        1920
+      ]
+    }
+  },
+  "paulapplegate-com/images/blog/eyZ8AYtaLZ-2444": {
+    "publicId": "images/blog/eyZ8AYtaLZ-2444",
+    "cloudName": "paulapplegate-com",
+    "width": 2444,
+    "height": 3200,
+    "version": 1790466463,
+    "sizes": "(max-width: 720px) calc(100vw - 3rem), 672px",
+    "widths": {
+      "jxl": [
+        50,
+        302,
+        439,
+        572,
+        699,
+        825,
+        944,
+        1087,
+        1218,
+        1333,
+        1469,
+        1561,
+        1635,
+        1775,
+        1913,
+        1920
+      ],
+      "avif": [
+        50,
+        307,
+        448,
+        590,
+        745,
+        897,
+        1079,
+        1253,
+        1406,
+        1555,
+        1782,
+        1862,
+        1920
+      ],
+      "webp": [
+        50,
+        274,
+        412,
+        526,
+        619,
+        689,
+        775,
+        860,
+        941,
+        1025,
+        1107,
+        1190,
+        1276,
+        1349,
+        1430,
+        1515,
+        1593,
+        1666,
+        1920
+      ]
+    }
+  },
+  "paulapplegate-com/images/blog/Jcf6WBb4CW-3840": {
+    "publicId": "images/blog/Jcf6WBb4CW-3840",
+    "cloudName": "paulapplegate-com",
+    "width": 3840,
+    "height": 3901,
+    "version": 1790469293,
+    "sizes": "(max-width: 720px) calc(100vw - 3rem), 672px",
+    "widths": {
+      "jxl": [
+        50,
+        775,
+        1322,
+        1702,
+        1920
+      ],
+      "avif": [
+        50,
+        1607,
+        1920
+      ],
+      "webp": [
+        50,
+        818,
+        1263,
+        1565,
+        1874,
+        1920
+      ]
+    }
   }
 }

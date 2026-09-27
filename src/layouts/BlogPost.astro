@@ -1,7 +1,6 @@
 ---
 import Layout from './Layout.astro';
 import CloudinaryImage from '../components/CloudinaryImage.astro';
-import CloudinaryShowcase from '../components/CloudinaryShowcase.astro';
 import { getOgImageUrl } from '../lib/cloudinary';
 import type { CollectionEntry } from 'astro:content';
 
@@ -91,9 +90,7 @@ const ogImage = getOgImageUrl(coverImage, { cloudName: coverCloudName });
     </section>
 
     <!-- Cloudinary showcase — wider than prose for visual impact -->
-    <div class="showcase-wrap">
-      <CloudinaryShowcase cloudName={coverCloudName} publicId={coverImage} alt={coverAlt} />
-    </div>
+
 
     <!-- Article prose -->
     <div class="prose-wrap">
@@ -275,6 +272,15 @@ const ogImage = getOgImageUrl(coverImage, { cloudName: coverCloudName });
     line-height: 1.85;
     margin-bottom: 1.5rem;
     color: var(--text);
+  }
+
+  /* In-body images — breathing room above and below */
+  .prose :global(.cloudinary-picture) {
+    margin: 3rem 0;
+  }
+
+  .prose :global(.cloudinary-picture img) {
+    border-radius: var(--radius-md);
   }
 
   .prose :global(a) {
