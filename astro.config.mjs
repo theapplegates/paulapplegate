@@ -7,6 +7,7 @@ import rehypeCloudinaryPicture from './src/plugins/rehype-cloudinary-picture.mjs
 const env = loadEnv(process.env.NODE_ENV || 'production', process.cwd(), 'PUBLIC_');
 
 export default defineConfig({
+  site: 'https://paulapplegate.com',
   markdown: {
     rehypePlugins: [[rehypeCloudinaryPicture, { cloudName: env.PUBLIC_CLOUDINARY_CLOUD_NAME }]],
   },
