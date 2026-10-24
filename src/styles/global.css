@@ -112,44 +112,47 @@ section[id] { scroll-margin-top: 6rem; }
 /* Pagefind search — boxed, scrolling dropdown under the nav input.
    #search scoping is deliberate: pagefind-ui.css uses two-class selectors
    (.pagefind-ui__drawer.svelte-…), so an ID is needed to win the cascade. */
-#search .pagefind-ui {
-  --pagefind-ui-background: var(--bg);
-  --pagefind-ui-text: var(--text);
-  --pagefind-ui-border: var(--border);
-  --pagefind-ui-primary: var(--accent);
-  --pagefind-ui-tag: var(--bg-secondary);
-}
-#search .pagefind-ui__form { position: relative; }
-#search .pagefind-ui__drawer {
-  position: absolute;
-  top: calc(100% + 6px);
-  right: 0;
-  left: auto;
-  z-index: 150;
-  display: block;
-  width: 440px;
-  max-width: calc(100vw - 2rem);
-  max-height: min(480px, calc(100vh - 140px));
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
-  padding: 1rem;
-}
-#search .pagefind-ui__hidden { display: none; }
-#search .pagefind-ui__results-area {
-  min-width: 0;
-  margin-top: 0;
-}
-#search .pagefind-ui__drawer::-webkit-scrollbar { width: 8px; }
-#search .pagefind-ui__drawer::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 4px; }
-#search .pagefind-ui__drawer::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-#search .pagefind-ui__drawer::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
-#search mark {
-  background: #f7e600;
-  color: inherit;
-  padding: 0 .1em;
-  border-radius: 2px;
-}
+/* Orama search — boxed, scrolling dropdown under the nav input. */
+   #search { position: relative; }
+   #search .orama-form { margin: 0; }
+#search .orama-input {
+     font-weight: 500;
+     font-size: .8rem;
+     color: var(--text);
+     background: var(--bg);
+     border: 1px solid var(--text-muted);
+   }
+#search .orama-input::placeholder {
+     color: var(--text-muted);
+     opacity: 1;
+   }
+   #search .orama-input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+   #search .orama-drawer {
+     position: absolute;
+     top: calc(100% + 6px);
+     right: 0;
+     z-index: 150;
+     width: 440px;
+     max-width: calc(100vw - 2rem);
+     max-height: min(480px, calc(100vh - 140px));
+     overflow-y: auto;
+     overscroll-behavior: contain;
+     background: var(--bg);
+     border: 1px solid var(--border);
+     border-radius: 8px;
+     box-shadow: 0 10px 30px rgb(0 0 0 / .12);
+     padding: 1rem;
+   }
+   #search .orama-drawer[hidden] { display: none; }
+   #search .orama-status { font-size: .78rem; color: var(--text-muted); margin: 0 0 .5rem; }
+   #search .orama-results { list-style: none; margin: 0; padding: 0; display: grid; gap: .25rem; }
+   #search .orama-results a { display: block; padding: .5rem .6rem; border-radius: 6px; color: var(--text); text-decoration: none; }
+   #search .orama-results a:hover, #search .orama-results a:focus-visible { background: var(--bg-secondary); }
+   #search .orama-title { display: block; font-size: .9rem; font-weight: 600; }
+   #search .orama-url { display: block; font-size: .68rem; color: var(--text-muted); opacity: .8; }
+   #search .orama-excerpt { display: block; font-size: .8rem; color: var(--text-muted); margin-top: .15rem; }
+   #search .orama-drawer::-webkit-scrollbar { width: 8px; }
+   #search .orama-drawer::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 4px; }
+   #search .orama-drawer::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+   #search .orama-drawer::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+   #search mark { background: #f7e600; color: inherit; padding: 0 .1em; border-radius: 2px; }
