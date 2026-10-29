@@ -1,0 +1,70 @@
+sq key generate --own-key --name "Paul Applegate" --email me@paulapplegate.com --encryption-algorithm  mlkem1024-x448 --signing-algorithm slhdsa256s  --profile rfc9580
+
+536D769DF301CB6F3FAA3E7F1D34F1470E7B7F11FD053FA52EAD37A5749B4E41
+536D769DF301CB6F3FAA3E7F1D34F1470E7B7F11FD053FA52EAD37A5749B4E41
+
+536D 769D F301 CB6F 3FAA 3E7F 1D34 F147 0E7B 7F11 FD05 3FA5 2EAD 37A5 749B 4E41
+
+536D 769D F301 CB6F 3FAA 3E7F 1D34 F147 
+0E7B 7F11 FD05 3FA5 2EAD 37A5 749B 4E41
+
+sq key generate --own-key --name "Paul Applegate" --email me@paulapplegate.com --encryption-algorithm  mlkem1024-x448 --signing-algorithm slhdsa256s  --profile rfc9580
+Enter a password to protect the new certificate (press enter to not use a password):
+                                                                Repeat the password:
+Transferable Secret Key.
+
+      Fingerprint: 536D769DF301CB6F3FAA3E7F1D34F1470E7B7F11FD053FA52EAD37A5749B4E41
+  Public-key algo: SLHDSA256s
+       Secret key: Encrypted
+    Creation time: 2026-10-29 19:04:07 UTC
+  Expiration time: 2029-10-29 12:30:28 UTC (creation time + 2years 11months 30days 9h 16m 45s)
+        Key flags: certification
+
+           Subkey: 617E319F6AEC6383A9256793BE9E0F42E9AEC9A921663888D4307D0D0B2C649B
+  Public-key algo: SLHDSA256s
+       Secret key: Encrypted
+    Creation time: 2026-10-29 19:04:07 UTC
+  Expiration time: 2029-10-29 12:30:28 UTC (creation time + 2years 11months 30days 9h 16m 45s)
+        Key flags: signing
+
+           Subkey: C31F048E99817E3E66C77D9BC05904C30343BD07504B0BED46C60B00B3640E43
+  Public-key algo: ML-KEM-1024+X448
+       Secret key: Encrypted
+    Creation time: 2026-10-29 19:04:07 UTC
+  Expiration time: 2029-10-29 12:30:28 UTC (creation time + 2years 11months 30days 9h 16m 45s)
+        Key flags: transport encryption, data-at-rest encryption
+
+           Subkey: 4C02A524C3762AD151403EA4CA6B2FDB385DA32B511F46BDC2776594F8860100
+  Public-key algo: SLHDSA256s
+       Secret key: Encrypted
+    Creation time: 2026-10-29 19:04:07 UTC
+  Expiration time: 2029-10-29 12:30:28 UTC (creation time + 2years 11months 30days 9h 16m 45s)
+        Key flags: authentication
+
+           UserID: <me@paulapplegate.com>
+   Certifications: 1, use --certifications to list
+
+           UserID: Paul Applegate
+   Certifications: 1, use --certifications to list
+
+
+Hint: Because you supplied the `--own-key` flag, the user IDs on this key have been marked as authenticated, and this key has been marked as a fully trusted introducer.  If that was a
+      mistake, you can undo that with:
+
+  $ sq pki link retract --cert=536D769DF301CB6F3FAA3E7F1D34F1470E7B7F11FD053FA52EAD37A5749B4E41 --all
+
+Hint: You can export your certificate as follows:
+
+  $ sq cert export --cert=536D769DF301CB6F3FAA3E7F1D34F1470E7B7F11FD053FA52EAD37A5749B4E41
+
+Hint: Once you are happy you can upload it to public directories using:
+
+  $ sq network keyserver publish --cert=536D769DF301CB6F3FAA3E7F1D34F1470E7B7F11FD053FA52EAD37A5749B4E41
+paulapplegate@Pauls-MacBook-Pro public % sq cert export --cert=sq key export --cert=536D769DF301CB6F3FAA3E7F1D34F1470E7B7F11FD053FA52EAD37A5749B4E41  > Paul_Applegate_0x536D769DF301CB6F3FAA3E7F1D34F1470E7B7F11FD053FA52EAD37A5749B4E41_public.asc
+error: invalid value 'sq' for '--cert <FINGERPRINT|KEYID>': Invalid argument: Invalid characters
+
+For more information, try '--help'.
+
+Paul_Applegate_0x5C8664ACB4F8DF4523A68EC3A09DC54B1702785F67F81E36615C0F29F97C3953_public.asc
+-rw-r--r--@ 1 paulapplegate  staff  327491 Oct 29 15:11 Paul_Applegate_0x536D769DF301CB6F3FAA3E7F1D34F1470E7B7F11FD053FA52EAD37A5749B4E41_secret.asc
+-rw-------@ 1 paulapplegate  staff   40798 Oct 29 15:13 Paul_Applegate_0x536D769DF301CB6F3FAA3E7F1D34F1470E7B7F11FD053FA52EAD37A5749B4E41.rev

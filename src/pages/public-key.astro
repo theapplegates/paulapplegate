@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import PublicKeyIcon from '../components/PublicKeyIcon.astro';
 import { keyFilename, keyFingerprint } from '../data/public-key';
-import publicKey from '../../public/Paul_Applegate_0x5C8664ACB4F8DF4523A68EC3A09DC54B1702785F67F81E36615C0F29F97C3953_public.asc?raw';
+import publicKey from '../../public/Paul_Applegate_0x536D769DF301CB6F3FAA3E7F1D34F1470E7B7F11FD053FA52EAD37A5749B4E41_public.asc?raw';
 ---
 <Layout title="OpenPGP Public Key | Paul Applegate" description="Paul Applegate’s public OpenPGP key, fingerprint, and download.">
   <section class="key-page" aria-labelledby="key-title">
@@ -13,11 +13,10 @@ import publicKey from '../../public/Paul_Applegate_0x5C8664ACB4F8DF4523A68EC3A09
     <div class="actions"><a class="download" href={`/${keyFilename}`} download>Download public key ↓</a><button id="copy-pgp-key" type="button">Copy key</button><span id="pgp-copy-status" role="status"></span></div>
     <dl><div class="fingerprint"><dt>Fingerprint (v6)</dt><dd>{keyFingerprint}</dd></div><div><dt>Primary algorithm</dt><dd>SLH-DSA-SHAKE-256s</dd></div><div><dt>Encryption subkey</dt><dd>ML-KEM-1024 + X448</dd></div><div><dt>Hash algorithm</dt><dd>SHA3-512</dd></div><div><dt>OpenPGP profile</dt><dd>v6 / RFC 9580 framing</dd></div></dl>
     <p class="compatibility">
-	  Experimental post-quantum algorithms require compatible software.
-	  <a href="https://slh-dsa.paulapplegate.com">Explore Paul's implementation ↗</a><br>
-	  Smarter people should use my gpg 2.5.24 <a href="Paul_Applegate_0x5C8664ACB4F8DF4523A68EC3A09DC54B1702785F67F81E36615C0F29F97C3953.asc">key.</a>
+	  Experimental post-quantum algorithms require compatible
+	  <a href="https://sequoia-pgp.org">software</a>.
 	</p>
-    <details><summary>View ASCII-armored public key</summary><pre id="pgp-public-key"><code>{publicKey}</code></pre></details>
+<details><summary>View ASCII-armored public key</summary><pre id="pgp-public-key"><code>{publicKey}</code></pre></details>
   </section>
 </Layout>
 <script>

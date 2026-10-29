@@ -1,0 +1,302 @@
+paulapplegate@Pauls-MacBook-Pro newest-sequoia % sq key generate --own-key \
+  --name "Paul Applegate" --email me@paulapplegate.com \
+  --signing-algorithm slhdsa256s \
+  --encryption-algorithm mlkem1024-x448 \
+  --profile rfc9580
+Enter a password to protect the new certificate (press enter to not use a password):
+                                                                Repeat the password:
+Transferable Secret Key.
+
+2CAD 9C19 9D1B 0E42 D10C 98B0 3DB0 4D18 E1A3 E84C FA76 5DB9 F317 B30B 7AE5 404B
+
+2CAD 9C19 9D1B 0E42 D10C 98B0 3DB0 4D18 
+E1A3 E84C FA76 5DB9 F317 B30B 7AE5 404B
+
+Paul_Applegate_0x2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B_public.asc
+
+      Fingerprint: 2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B
+  Public-key algo: SLHDSA256s
+       Secret key: Encrypted
+    Creation time: 2026-10-17 18:31:52 UTC
+  Expiration time: 2029-10-17 11:58:13 UTC (creation time + 2years 11months 30days 9h 16m 45s)
+        Key flags: certification
+
+           Subkey: 5699122E0FE6B7BD9BCA387BBB5214C0AAFB40EB41060EF7524F2EAAA64B7086
+  Public-key algo: SLHDSA256s
+       Secret key: Encrypted
+    Creation time: 2026-10-17 18:31:52 UTC
+  Expiration time: 2029-10-17 11:58:13 UTC (creation time + 2years 11months 30days 9h 16m 45s)
+        Key flags: signing
+
+           Subkey: 09760E9E2D63ABC5A5B0247AB3A2DBC7AF687374C90808254D0F79EAEDAE04E0
+  Public-key algo: ML-KEM-1024+X448
+       Secret key: Encrypted
+    Creation time: 2026-10-17 18:31:52 UTC
+  Expiration time: 2029-10-17 11:58:13 UTC (creation time + 2years 11months 30days 9h 16m 45s)
+        Key flags: transport encryption, data-at-rest encryption
+
+           Subkey: 6A607A969E926BC8303AA6A43D99F5306E4E409FD0645D0CDD6CFBA7C04BCE16
+  Public-key algo: SLHDSA256s
+       Secret key: Encrypted
+    Creation time: 2026-10-17 18:31:52 UTC
+  Expiration time: 2029-10-17 11:58:13 UTC (creation time + 2years 11months 30days 9h 16m 45s)
+        Key flags: authentication
+
+           UserID: <me@paulapplegate.com>
+   Certifications: 1, use --certifications to list
+
+           UserID: Paul Applegate
+   Certifications: 1, use --certifications to list
+
+
+Hint: Because you supplied the `--own-key` flag, the user IDs on this key have been marked as authenticated, and this key has been marked as a fully trusted introducer.  If that was a
+      mistake, you can undo that with:
+
+  $ sq pki link retract --cert=2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B --all
+
+Hint: You can export your certificate as follows:
+
+  $ sq cert export --cert=2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B
+
+Hint: Once you are happy you can upload it to public directories using:
+
+  $ sq network keyserver publish --cert=2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B
+paulapplegate@Pauls-MacBook-Pro newest-sequoia % sq cert export --cert=2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B > Paul_Applegate_0x52CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B_public.asc
+paulapplegate@Pauls-MacBook-Pro newest-sequoia % sq key export --cert=2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B > Paul_Applegate_0x2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B_secret.asc
+paulapplegate@Pauls-MacBook-Pro newest-sequoia % sq key revoke --cert=2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B --reason retired --message 'Non ya' --output Paul_Applegate_0x2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B.rev
+Enter the password to unlock 2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B Paul Applegate (authenticated), created 2026-10-17 18:31:52 UTC:
+paulapplegate@Pauls-MacBook-Pro newest-sequoia % sq packet dump --cert=2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B
+Public-Key Packet, new CTB, 74 bytes
+    Version: 6
+    Creation time: 2026-10-17 18:31:52 UTC
+    Pk algo: SLHDSA256s
+    Fingerprint: 2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B
+    KeyID: 2CAD9C199D1B0E42
+
+Signature Packet, new CTB, 29900 bytes
+    Version: 6
+    Type: DirectKey
+    Pk algo: SLHDSA256s
+    Hash algo: SHA512
+    Hashed area:
+      Signature creation time: 2026-10-17 18:31:52 UTC (critical)
+      Key expiration time: 2years 11months 30days 9h 16m 45s (critical)
+      Symmetric algo preferences: AES256, AES128
+      Hash preferences: SHA512, SHA256
+      Key flags: C (critical)
+      Features: SEIPDv1, SEIPDv2
+      Issuer Fingerprint: 2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B
+        Paul Applegate (authenticated)
+    Digest prefix: 18AA
+    Salt: ACA6BA6BFFE9EA75C88AA637C40DD2E566E46A9FFB11AAA55745E6C8F012FFD8
+    Level: 0 (signature over data)
+
+User ID Packet, new CTB, 22 bytes
+    Value: <me@paulapplegate.com>
+
+Signature Packet, new CTB, 29900 bytes
+    Version: 6
+    Type: PositiveCertification
+    Pk algo: SLHDSA256s
+    Hash algo: SHA512
+    Hashed area:
+      Signature creation time: 2026-10-17 18:31:52 UTC (critical)
+      Key expiration time: 2years 11months 30days 9h 16m 45s (critical)
+      Symmetric algo preferences: AES256, AES128
+      Hash preferences: SHA512, SHA256
+      Key flags: C (critical)
+      Features: SEIPDv1, SEIPDv2
+      Issuer Fingerprint: 2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B
+        Paul Applegate (authenticated)
+    Digest prefix: 60C8
+    Salt: A83D7F247EF0C25B93FDE6191D391A0BABB2CA9F6B7CFDD0D62BFE05ABAFBE98
+    Level: 0 (signature over data)
+
+Signature Packet, new CTB, 192 bytes
+    Version: 4
+    Type: GenericCertification
+    Pk algo: EdDSA
+    Hash algo: SHA512
+    Hashed area:
+      Signature creation time: 2026-10-17 18:31:52 UTC (critical)
+      Exportable certification: false (critical)
+      Issuer: E2347E67EDC1FA49
+        Generated on Pauls-MacBook-Pro.local (partially authenticated, 1/120)
+      Notation: salt@notations.sequoia-pgp.org
+        00000000  5d e5 cb 5a 8c 7f c7 fe  70 4d 30 7f c8 70 a0 67
+        00000010  f8 68 4f da fa 85 ef bb  ad 9a 0c 52 ed 40 c1 a6
+      Issuer Fingerprint: EEF982EE31FC318F903D6C73E2347E67EDC1FA49
+        Generated on Pauls-MacBook-Pro.local (partially authenticated, 1/120)
+    Digest prefix: 947B
+    Level: 0 (signature over data)
+
+Signature Packet, new CTB, 196 bytes
+    Version: 4
+    Type: GenericCertification
+    Pk algo: EdDSA
+    Hash algo: SHA512
+    Hashed area:
+      Signature creation time: 2026-10-17 18:31:52 UTC (critical)
+      Exportable certification: false (critical)
+      Trust signature: level 255 trust 120 (critical)
+      Issuer: 59AAF50B9C71859B
+        Local Trust Root (authenticated)
+      Notation: salt@notations.sequoia-pgp.org
+        00000000  ef 5d ef 48 e2 71 71 08  96 0b 68 76 9d 95 f0 1a
+        00000010  50 56 d3 56 ee cd b8 16  77 fe ac 46 ee 00 9b 65
+      Issuer Fingerprint: EFB8DB220C38DD1F10B0DD7759AAF50B9C71859B
+        Local Trust Root (authenticated)
+    Digest prefix: A7CA
+    Level: 0 (signature over data)
+
+User ID Packet, new CTB, 14 bytes
+    Value: Paul Applegate
+
+Signature Packet, new CTB, 29903 bytes
+    Version: 6
+    Type: PositiveCertification
+    Pk algo: SLHDSA256s
+    Hash algo: SHA512
+    Hashed area:
+      Signature creation time: 2026-10-17 18:31:52 UTC (critical)
+      Key expiration time: 2years 11months 30days 9h 16m 45s (critical)
+      Symmetric algo preferences: AES256, AES128
+      Hash preferences: SHA512, SHA256
+      Primary User ID: true (critical)
+      Key flags: C (critical)
+      Features: SEIPDv1, SEIPDv2
+      Issuer Fingerprint: 2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B
+        Paul Applegate (authenticated)
+    Digest prefix: F486
+    Salt: 3ED5527FEF02D3B0D2E93D1D84A621B1745E1BAED7611522E78CBCFA7F984CE3
+    Level: 0 (signature over data)
+
+Signature Packet, new CTB, 195 bytes
+    Version: 4
+    Type: GenericCertification
+    Pk algo: EdDSA
+    Hash algo: SHA512
+    Hashed area:
+      Signature creation time: 2026-10-17 18:31:52 UTC (critical)
+      Exportable certification: false (critical)
+      Trust signature: level 255 trust 120 (critical)
+      Issuer: 59AAF50B9C71859B
+        Local Trust Root (authenticated)
+      Notation: salt@notations.sequoia-pgp.org
+        00000000  e5 e4 0b d5 57 d5 16 50  7a 2a 35 5a c8 e2 a3 b4
+        00000010  47 0a c1 52 3c 9d 39 e7  ad 73 42 00 74 c0 c1 be
+      Issuer Fingerprint: EFB8DB220C38DD1F10B0DD7759AAF50B9C71859B
+        Local Trust Root (authenticated)
+    Digest prefix: 0D25
+    Level: 0 (signature over data)
+
+Signature Packet, new CTB, 192 bytes
+    Version: 4
+    Type: GenericCertification
+    Pk algo: EdDSA
+    Hash algo: SHA512
+    Hashed area:
+      Signature creation time: 2026-10-17 18:31:52 UTC (critical)
+      Exportable certification: false (critical)
+      Issuer: E2347E67EDC1FA49
+        Generated on Pauls-MacBook-Pro.local (partially authenticated, 1/120)
+      Notation: salt@notations.sequoia-pgp.org
+        00000000  80 5f c4 a2 4c d8 9f 08  c4 c8 9e d0 f7 72 76 e9
+        00000010  1e e2 6b 33 a2 a8 2c 95  11 a4 54 67 b2 e7 d7 1c
+      Issuer Fingerprint: EEF982EE31FC318F903D6C73E2347E67EDC1FA49
+        Generated on Pauls-MacBook-Pro.local (partially authenticated, 1/120)
+    Digest prefix: 495A
+    Level: 0 (signature over data)
+
+Public-Subkey Packet, new CTB, 74 bytes
+    Version: 6
+    Creation time: 2026-10-17 18:31:52 UTC
+    Pk algo: SLHDSA256s
+    Fingerprint: 6A607A969E926BC8303AA6A43D99F5306E4E409FD0645D0CDD6CFBA7C04BCE16
+    KeyID: 6A607A969E926BC8
+
+Signature Packet, new CTB, 59775 bytes
+    Version: 6
+    Type: SubkeyBinding
+    Pk algo: SLHDSA256s
+    Hash algo: SHA512
+    Hashed area:
+      Signature creation time: 2026-10-17 18:31:52 UTC (critical)
+      Key expiration time: 2years 11months 30days 9h 16m 45s (critical)
+      Key flags: A (critical)
+      Embedded signature:  (critical)
+                  Version: 6
+          Type: PrimaryKeyBinding
+          Pk algo: SLHDSA256s
+          Hash algo: SHA512
+          Hashed area:
+            Signature creation time: 2026-10-17 18:31:52 UTC (critical)
+            Issuer Fingerprint: 6A607A969E926BC8303AA6A43D99F5306E4E409FD0645D0CDD6CFBA7C04BCE16
+              Paul Applegate (authenticated)
+          Digest prefix: 067E
+          Salt: 4D73104A77AE596DF74670DC4CEE22C9400613496E100995CB75B5831CFACCDE
+          Level: 0 (signature over data)
+      Issuer Fingerprint: 2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B
+        Paul Applegate (authenticated)
+    Digest prefix: 91CC
+    Salt: 4AC8F9AD900CF1A502C2D4642BF1F824CD9A48EA21ABC7B4D47A9D64498A9990
+    Level: 0 (signature over data)
+
+Public-Subkey Packet, new CTB, 74 bytes
+    Version: 6
+    Creation time: 2026-10-17 18:31:52 UTC
+    Pk algo: SLHDSA256s
+    Fingerprint: 5699122E0FE6B7BD9BCA387BBB5214C0AAFB40EB41060EF7524F2EAAA64B7086
+    KeyID: 5699122E0FE6B7BD
+
+Signature Packet, new CTB, 59775 bytes
+    Version: 6
+    Type: SubkeyBinding
+    Pk algo: SLHDSA256s
+    Hash algo: SHA512
+    Hashed area:
+      Signature creation time: 2026-10-17 18:31:52 UTC (critical)
+      Key expiration time: 2years 11months 30days 9h 16m 45s (critical)
+      Key flags: S (critical)
+      Embedded signature:  (critical)
+                  Version: 6
+          Type: PrimaryKeyBinding
+          Pk algo: SLHDSA256s
+          Hash algo: SHA512
+          Hashed area:
+            Signature creation time: 2026-10-17 18:31:52 UTC (critical)
+            Issuer Fingerprint: 5699122E0FE6B7BD9BCA387BBB5214C0AAFB40EB41060EF7524F2EAAA64B7086
+              Paul Applegate (authenticated)
+          Digest prefix: 1714
+          Salt: 65C5EDCB88A9C6CEC48EDC5D23FEA306788F197003C26FC0490CDACD66BF2658
+          Level: 0 (signature over data)
+      Issuer Fingerprint: 2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B
+        Paul Applegate (authenticated)
+    Digest prefix: EE8D
+    Salt: 676D726E3A5469FEE40DA02B4D7C778B38A237728649AFE2F91F6426DBF4C9AB
+    Level: 0 (signature over data)
+
+Public-Subkey Packet, new CTB, 1634 bytes
+    Version: 6
+    Creation time: 2026-10-17 18:31:52 UTC
+    Pk algo: ML-KEM-1024+X448
+    Fingerprint: 09760E9E2D63ABC5A5B0247AB3A2DBC7AF687374C90808254D0F79EAEDAE04E0
+    KeyID: 09760E9E2D63ABC5
+
+Signature Packet, new CTB, 29889 bytes
+    Version: 6
+    Type: SubkeyBinding
+    Pk algo: SLHDSA256s
+    Hash algo: SHA512
+    Hashed area:
+      Signature creation time: 2026-10-17 18:31:52 UTC (critical)
+      Key expiration time: 2years 11months 30days 9h 16m 45s (critical)
+      Key flags: EtEr (critical)
+      Issuer Fingerprint: 2CAD9C199D1B0E42D10C98B03DB04D18E1A3E84CFA765DB9F317B30B7AE5404B
+        Paul Applegate (authenticated)
+    Digest prefix: 88A4
+    Salt: E82E99DE4CB5A8E42E983CC9723AAF363F81943ED7CC4A9A58AE639719493B75
+    Level: 0 (signature over data)
+
+paulapplegate@Pauls-MacBook-Pro newest-sequoia %
+
