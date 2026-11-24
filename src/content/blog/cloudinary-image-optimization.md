@@ -9,6 +9,8 @@ tags: ["cloudinary", "performance", "astro"]
 author: "Eugene Musebe"
 ---
 
+<cloudinary-picture src="images/blog/sergio-morais-l6eHshWNr1A-unsplash" cloud-name="paulapplegate-com" alt="Vacation" width="4928" height="7404" sizes="(max-width: 720px) calc(100vw - 3rem), 672px"></cloudinary-picture>
+
 <cloudinary-picture src="images/blog/Gulfstream-G800" cloud-name="paulapplegate-com" alt="Describe your photo" width="1672" height="941" sizes="(max-width: 720px) calc(100vw - 3rem), 672px"></cloudinary-picture>
 
 

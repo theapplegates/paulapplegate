@@ -508,5 +508,59 @@
         1920
       ]
     }
+  },
+  "paulapplegate-com/images/blog/sergio-morais-l6eHshWNr1A-unsplash": {
+    "publicId": "images/blog/sergio-morais-l6eHshWNr1A-unsplash",
+    "cloudName": "paulapplegate-com",
+    "width": 4928,
+    "height": 7404,
+    "version": 1795558000,
+    "sizes": "(max-width: 720px) calc(100vw - 3rem), 672px",
+    "widths": {
+      "jxl": [
+        50,
+        507,
+        774,
+        966,
+        1117,
+        1254,
+        1404,
+        1521,
+        1622,
+        1761,
+        1852,
+        1893,
+        1920
+      ],
+      "avif": [
+        50,
+        650,
+        964,
+        1189,
+        1400,
+        1587,
+        1764,
+        1911,
+        1920
+      ],
+      "webp": [
+        50,
+        532,
+        714,
+        845,
+        923,
+        1030,
+        1130,
+        1225,
+        1309,
+        1391,
+        1469,
+        1542,
+        1613,
+        1913,
+        1918,
+        1920
+      ]
+    }
   }
 }
